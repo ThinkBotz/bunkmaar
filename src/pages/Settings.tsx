@@ -1,7 +1,7 @@
 import { Card } from '@/components/ui/card';
 import Diagnostics from './Diagnostics';
 import { Button } from '@/components/ui/button';
-import { Settings as SettingsIcon, Download, Upload, Trash2, Info, User } from 'lucide-react';
+import { Settings as SettingsIcon, Download, Upload, Trash2, Info, User, Phone, Mail, Instagram } from 'lucide-react';
 import { useAppStore } from '@/store/useAppStore';
 import { toast } from 'sonner';
 import { useRef, useState } from 'react';
@@ -44,7 +44,7 @@ export default function Settings() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `attendx_samxiao-${new Date().toISOString().split('T')[0]}.json`;
+    a.download = `bunkmaar-${new Date().toISOString().split('T')[0]}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -356,16 +356,22 @@ export default function Settings() {
         </div>
         <div className="space-y-3 text-sm">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            <span className="text-muted-foreground">Phone:</span>
-            <a href="tel:+919951970441" className="font-medium text-primary hover:underline">+91 9951970441</a>
+            <div className="flex items-center gap-2">
+              <Phone className="h-4 w-4 text-muted-foreground" />
+              <a href="tel:+919951970441" className="font-medium text-primary hover:underline">+91 9951970441</a>
+            </div>
           </div>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            <span className="text-muted-foreground">Email:</span>
-            <a href="mailto:syedsame2244@gmail.com" className="font-medium text-primary hover:underline break-all">syedsame2244@gmail.com</a>
+            <div className="flex items-center gap-2">
+              <Mail className="h-4 w-4 text-muted-foreground" />
+              <a href="mailto:syedsame2244@gmail.com" className="font-medium text-primary hover:underline break-all">syedsame2244@gmail.com</a>
+            </div>
           </div>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            <span className="text-muted-foreground">Instagram:</span>
-            <a href="https://instagram.com/_samxiao" target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">@_samxiao</a>
+            <div className="flex items-center gap-2">
+              <Instagram className="h-4 w-4 text-muted-foreground" />
+              <a href="https://instagram.com/_samxiao" target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">@_samxiao</a>
+            </div>
           </div>
         </div>
       </Card>
