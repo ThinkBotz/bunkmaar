@@ -358,6 +358,7 @@ export default function Settings() {
                     </Button>
                   ))}
                 </div>
+                <h2 className="text-base font-semibold mb-3">If you don't find your class DATA please contact the developer <br /> <a href="https://wa.me/919951970441?text=I%20Dont%20find%20my%20class%20data" className="text-primary hover:underline" style={{ textAlign: 'center' ,justifyContent: 'center', display: 'flex'}}>whatsapp</a> </h2>
               </div>
               
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 pt-2 border-t">
