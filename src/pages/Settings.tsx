@@ -93,6 +93,31 @@ export default function Settings() {
     }
   };
 
+  // Predefined datasets available in `public/predefined/`
+  const predefinedDatasets = [
+    { id: 'aiml', label: 'AI / ML Sample', path: '/predefined/aiml.json' },
+    { id: 'cse', label: 'CSE Sample', path: '/predefined/cse.json' },
+  ];
+
+  const applyPredefined = async (datasetPath: string) => {
+    if (!window.confirm('This will replace current data with the selected predefined dataset. Continue?')) return;
+    try {
+      const res = await fetch(datasetPath);
+      if (!res.ok) throw new Error('Failed to fetch predefined dataset');
+      const data = await res.json();
+      // Basic validation
+      if (!data.subjects || !data.timetable || !data.attendanceRecords) {
+        throw new Error('Invalid dataset format');
+      }
+      importData(data);
+      try { localStorage.setItem('student-app:lastBackupAt', new Date().toISOString()); } catch {}
+      toast.success('Predefined dataset applied');
+    } catch (err) {
+      console.error(err);
+      toast.error('Failed to apply dataset');
+    }
+  };
+
 
   const [showAppearance, setShowAppearance] = useState(false);
   const [showProfileSettings, setShowProfileSettings] = useState(true);
@@ -321,6 +346,18 @@ export default function Settings() {
                   <Upload className="h-4 w-4 mr-2" />
                   Import
                 </Button>
+              </div>
+
+              <div className="pt-4 border-t">
+                <h3 className="text-base font-semibold mb-3">Predefined Datasets</h3>
+                <p className="text-sm text-muted-foreground mb-3">Quickly load a sample dataset (this will replace current data).</p>
+                <div className="flex flex-wrap gap-2">
+                  {predefinedDatasets.map(ds => (
+                    <Button key={ds.id} variant="outline" onClick={() => applyPredefined(ds.path)}>
+                      {ds.label}
+                    </Button>
+                  ))}
+                </div>
               </div>
               
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 pt-2 border-t">
