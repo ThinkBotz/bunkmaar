@@ -104,10 +104,10 @@ export const AttendanceStats = () => {
   };
 
   const getPercentageBg = (percentage: number) => {
-    // Provide background + text color with light and dark variants for good contrast
-    if (percentage >= 75) return 'bg-success/10 text-success dark:bg-success/700 dark:text-success-foreground';
-    if (percentage >= 60) return 'bg-warning/10 text-warning dark:bg-warning/700 dark:text-warning-foreground';
-    return 'bg-destructive/10 text-destructive dark:bg-destructive/700 dark:text-destructive-foreground';
+    // Stronger light-mode contrast and appropriate dark-mode fallbacks
+    if (percentage >= 75) return 'bg-success/20 text-success-800 dark:bg-success-600 dark:text-success-foreground';
+    if (percentage >= 60) return 'bg-warning/20 text-warning-800 dark:bg-warning-600 dark:text-warning-foreground';
+    return 'bg-destructive/20 text-destructive-800 dark:bg-destructive-600 dark:text-destructive-foreground';
   };
 
   return (
