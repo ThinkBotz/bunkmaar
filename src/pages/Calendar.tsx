@@ -413,16 +413,7 @@ export default function Calendar() {
                   });
                   setMulti([]);
                 }}>Apply Holiday</Button>
-                <Button size="sm" variant="outline" onClick={() => {
-                  const list = multi.map(d => format(d, 'yyyy-MM-dd'));
-                  list.forEach(dateString => {
-                    const dateObj = new Date(dateString);
-                    const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
-                    addExamDay(dateString);
-                    useAppStore.getState().markAllDayAttendance(dateString, dayName, 'cancelled');
-                  });
-                  setMulti([]);
-                }}>📚 Exam Day</Button>
+                {/* Exam Day UI removed */}
                 <Button size="sm" variant="outline" onClick={() => {
                   const list = multi.map(d => format(d, 'yyyy-MM-dd'));
                   list.forEach(dateString => {
@@ -449,14 +440,12 @@ export default function Calendar() {
               className="rounded-md border pointer-events-auto"
               modifiers={{
                 holiday: (day) => daySummary(day) === 'holiday',
-                examDay: (day) => daySummary(day) === 'examDay',
                 allPresent: (day) => daySummary(day) === 'allPresent',
                 mixed: (day) => daySummary(day) === 'mixed',
                 allAbsent: (day) => daySummary(day) === 'allAbsent',
               }}
               modifiersClassNames={{
                 holiday: 'bg-yellow-500/80 text-foreground rounded-full', // � Holiday/Weekend
-                examDay: 'bg-purple-500/80 text-foreground rounded-full', // 📚 Exam day
                 allPresent: 'bg-green-500/80 text-foreground rounded-full', // 🟢 Present
                 mixed: 'bg-blue-500/80 text-foreground rounded-full', // � Partial  
                 allAbsent: 'bg-red-500/80 text-foreground rounded-full', // 🔴 Absent
@@ -473,14 +462,12 @@ export default function Calendar() {
               className="rounded-md border pointer-events-auto"
               modifiers={{
                 holiday: (day) => daySummary(day) === 'holiday',
-                examDay: (day) => daySummary(day) === 'examDay',
                 allPresent: (day) => daySummary(day) === 'allPresent',
                 mixed: (day) => daySummary(day) === 'mixed',
                 allAbsent: (day) => daySummary(day) === 'allAbsent',
               }}
               modifiersClassNames={{
                 holiday: 'bg-yellow-500/80 text-foreground rounded-full', // � Holiday/Weekend
-                examDay: 'bg-purple-500/80 text-foreground rounded-full', // 📚 Exam day
                 allPresent: 'bg-green-500/80 text-foreground rounded-full', // 🟢 Present
                 mixed: 'bg-blue-500/80 text-foreground rounded-full', // � Partial  
                 allAbsent: 'bg-red-500/80 text-foreground rounded-full', // 🔴 Absent
@@ -508,9 +495,6 @@ export default function Calendar() {
             {selectedDate && isHolidayDate(selectedDate) && (
               <Badge className="bg-blue-500 text-white">🔵 Holiday</Badge>
             )}
-            {selectedDate && isExamDay(selectedDate) && (
-              <Badge className="bg-purple-500 text-white">📚 Exam Day</Badge>
-            )}
             <Button size="sm" variant="outline" onClick={() => applyDayAction('present')}>Day: Present</Button>
             <Button size="sm" variant="outline" onClick={() => applyDayAction('absent')}>Day: Absent</Button>
             <Button size="sm" variant="outline" onClick={() => applyDayAction('clear')}>Day: Clear</Button>
@@ -530,18 +514,7 @@ export default function Calendar() {
                 })()}
               </Button>
             )}
-            <Button 
-              size="sm" 
-              variant="outline" 
-              onClick={() => applyDayAction('examDay')}
-              disabled={selectedDate ? isHolidayDate(selectedDate) : false}
-            >
-              {(() => {
-                const d = selectedDate ? format(selectedDate, 'yyyy-MM-dd') : format(new Date(), 'yyyy-MM-dd');
-                const isExam = settings.examDays?.includes(d);
-                return isExam ? 'Remove Exam Day' : 'Set Exam Day';
-              })()}
-            </Button>
+            {/* Exam Day toggle removed from UI */}
           </div>
           
           {selectedDate && (
