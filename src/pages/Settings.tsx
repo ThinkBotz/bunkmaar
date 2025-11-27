@@ -44,7 +44,7 @@ export default function Settings() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `bunkmaar-${new Date().toISOString().split('T')[0]}.json`;
+    a.download = `BunkMaar-${new Date().toISOString().split('T')[0]}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -378,7 +378,7 @@ export default function Settings() {
 
       {/* About */}
       <Card className="bg-gradient-card shadow-card border-0 p-4 sm:p-6 text-center">
-        <h3 className="text-lg font-semibold text-foreground mb-2">Student Attendance Tracker</h3>
+        <h3 className="text-lg font-semibold text-foreground mb-2">BunkMaar</h3>
         <p className="text-muted-foreground text-sm">
           A simple and efficient way to track your class attendance and maintain academic records.
         </p>

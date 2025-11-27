@@ -1,4 +1,4 @@
-# AttendX
+# BunkMaar
 
 ## Author
 
@@ -6,7 +6,7 @@
 
 **Instagram:** @_samxiao
 
-# 📚 Student Attendance Tracker
+# 📚 BunkMaar
 
 A modern, responsive web application for tracking student attendance with intelligent analytics and predictions.
 
