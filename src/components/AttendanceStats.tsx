@@ -99,16 +99,15 @@ export const AttendanceStats = () => {
   };
 
   const getPercentageColor = (percentage: number) => {
-    if (percentage >= 75) return 'text-success-foreground';
-    if (percentage >= 60) return 'text-warning-foreground';
-    return 'text-destructive-foreground';
+    // Empty - color is handled together with background to ensure correct contrast
+    return '';
   };
 
   const getPercentageBg = (percentage: number) => {
-    // return combined background + foreground classes to ensure readability in dark mode
-    if (percentage >= 75) return 'bg-success/20 dark:bg-success/30 text-success-foreground';
-    if (percentage >= 60) return 'bg-warning/20 dark:bg-warning/30 text-warning-foreground';
-    return 'bg-destructive/10 dark:bg-destructive/20 text-destructive-foreground';
+    // Provide background + text color with light and dark variants for good contrast
+    if (percentage >= 75) return 'bg-success/10 text-success dark:bg-success/700 dark:text-success-foreground';
+    if (percentage >= 60) return 'bg-warning/10 text-warning dark:bg-warning/700 dark:text-warning-foreground';
+    return 'bg-destructive/10 text-destructive dark:bg-destructive/700 dark:text-destructive-foreground';
   };
 
   return (
