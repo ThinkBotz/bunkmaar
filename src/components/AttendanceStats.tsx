@@ -99,22 +99,23 @@ export const AttendanceStats = () => {
   };
 
   const getPercentageColor = (percentage: number) => {
-    if (percentage >= 75) return 'text-success';
-    if (percentage >= 60) return 'text-warning';
-    return 'text-destructive';
+    if (percentage >= 75) return 'text-success-foreground';
+    if (percentage >= 60) return 'text-warning-foreground';
+    return 'text-destructive-foreground';
   };
 
   const getPercentageBg = (percentage: number) => {
-    if (percentage >= 75) return 'bg-success-light';
-    if (percentage >= 60) return 'bg-warning-light';
-    return 'bg-destructive/10';
+    // return combined background + foreground classes to ensure readability in dark mode
+    if (percentage >= 75) return 'bg-success/20 dark:bg-success/30 text-success-foreground';
+    if (percentage >= 60) return 'bg-warning/20 dark:bg-warning/30 text-warning-foreground';
+    return 'bg-destructive/10 dark:bg-destructive/20 text-destructive-foreground';
   };
 
   return (
     <Card className="bg-gradient-card shadow-card border-0 p-4 sm:p-6 w-full">
       <div className="flex items-center justify-between w-full">
         <h2 className="text-xl sm:text-2xl font-bold text-foreground whitespace-nowrap tracking-tight">
-          Attendance Overview
+          Attendance 
         </h2>
         <div className={cn(
           "text-lg font-semibold whitespace-nowrap px-2 py-0.5 rounded-lg",
