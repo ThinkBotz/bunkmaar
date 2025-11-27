@@ -1,64 +1,74 @@
 {
   "subjects": [
     {
-      "name": "AIML",
+      "name": "PA",
       "color": "#8B5CF6",
-      "id": "1757754604621",
-      "createdAt": "2025-09-13T09:10:04.621Z"
+      "criteria": 75,
+      "id": "1764130685921",
+      "createdAt": "2025-11-26T04:18:05.921Z"
     },
     {
-      "name": "NLP",
+      "name": "BDT",
       "color": "#06B6D4",
-      "id": "1757754616431",
-      "createdAt": "2025-09-13T09:10:16.431Z"
+      "criteria": 75,
+      "id": "1764130698586",
+      "createdAt": "2025-11-26T04:18:18.586Z"
     },
     {
-      "name": "ESPS",
+      "name": "IQC",
       "color": "#10B981",
-      "id": "1757754624200",
-      "createdAt": "2025-09-13T09:10:24.200Z"
+      "criteria": 75,
+      "id": "1764130705926",
+      "createdAt": "2025-11-26T04:18:25.926Z"
     },
     {
-      "name": "IQT&A",
-      "color": "#EF4444",
-      "id": "1757754636305",
-      "createdAt": "2025-09-13T09:10:36.305Z"
-    },
-    {
-      "name": "SSP",
-      "color": "#EC4899",
-      "id": "1757754650506",
-      "createdAt": "2025-09-13T09:10:50.506Z"
-    },
-    {
-      "name": "EDA",
+      "name": "RES",
       "color": "#F59E0B",
-      "id": "1757754673699",
-      "createdAt": "2025-09-13T09:11:13.699Z"
+      "criteria": 75,
+      "id": "1764130715009",
+      "createdAt": "2025-11-26T04:18:35.009Z"
     },
     {
-      "name": "AI&SP LAB",
+      "name": "FSD",
+      "color": "#EF4444",
+      "criteria": 75,
+      "id": "1764130722912",
+      "createdAt": "2025-11-26T04:18:42.912Z"
+    },
+    {
+      "name": "CC",
+      "color": "#EC4899",
+      "criteria": 75,
+      "id": "1764130730325",
+      "createdAt": "2025-11-26T04:18:50.325Z"
+    },
+    {
+      "name": "SS LAB",
       "color": "#8B5A2B",
-      "id": "1757754707247",
-      "createdAt": "2025-09-13T09:11:47.247Z"
+      "criteria": 75,
+      "id": "1764130763336",
+      "createdAt": "2025-11-26T04:19:23.336Z"
     },
     {
-      "name": "FSD-2 LAB",
+      "name": "IPR",
       "color": "#6366F1",
-      "id": "1757754730126",
-      "createdAt": "2025-09-13T09:12:10.126Z"
+      "criteria": 75,
+      "id": "1764130778382",
+      "createdAt": "2025-11-26T04:19:38.382Z"
     },
     {
-      "name": "TINKERING LAB",
+      "name": "BD&CC LAB",
+      "color": "#84CC16",
+      "criteria": 75,
+      "id": "1764130795159",
+      "createdAt": "2025-11-26T04:19:55.159Z"
+    },
+    {
+      "name": "FSD LAB",
       "color": "#F97316",
-      "id": "1757754743130",
-      "createdAt": "2025-09-13T09:12:23.130Z"
-    },
-    {
-      "name": "CV&ML LAB",
-      "color": "#14B8A6",
-      "id": "1757754756451",
-      "createdAt": "2025-09-13T09:12:36.451Z"
+      "criteria": 75,
+      "id": "1764130840560",
+      "createdAt": "2025-11-26T04:20:40.560Z"
     }
   ],
   "timetable": {
@@ -70,43 +80,42 @@
             "id": "1",
             "startTime": "09:10",
             "endTime": "10:00",
-            "subjectId": "1757754604621"
+            "subjectId": "1764130685921"
           },
           {
             "id": "2",
             "startTime": "10:00",
             "endTime": "10:50",
-            "subjectId": "1757754707247"
+            "subjectId": "1764130698586"
           },
           {
             "id": "3",
             "startTime": "10:50",
             "endTime": "11:40",
-            "subjectId": "1757754707247"
+            "subjectId": "1764130705926"
           },
           {
             "id": "4",
             "startTime": "11:40",
             "endTime": "12:30",
-            "subjectId": "1757754707247"
+            "subjectId": "1764130715009"
           },
           {
             "id": "5",
             "startTime": "13:20",
             "endTime": "14:10",
-            "subjectId": "1757754650506"
+            "subjectId": "1764130722912"
           },
           {
             "id": "6",
             "startTime": "14:10",
             "endTime": "15:00",
-            "subjectId": "1757754624200"
+            "subjectId": "1764130730325"
           },
           {
             "id": "7",
             "startTime": "15:00",
-            "endTime": "15:50",
-            "subjectId": "1757754616431"
+            "endTime": "15:50"
           }
         ]
       },
@@ -117,43 +126,43 @@
             "id": "1",
             "startTime": "09:10",
             "endTime": "10:00",
-            "subjectId": "1757754673699"
+            "subjectId": "1764130715009"
           },
           {
             "id": "2",
             "startTime": "10:00",
             "endTime": "10:50",
-            "subjectId": "1757754616431"
+            "subjectId": "1764130763336"
           },
           {
             "id": "3",
             "startTime": "10:50",
             "endTime": "11:40",
-            "subjectId": "1757754650506"
+            "subjectId": "1764130763336"
           },
           {
             "id": "4",
             "startTime": "11:40",
             "endTime": "12:30",
-            "subjectId": "1757754616431"
+            "subjectId": "1764130763336"
           },
           {
             "id": "5",
             "startTime": "13:20",
             "endTime": "14:10",
-            "subjectId": "1757754756451"
+            "subjectId": "1764130685921"
           },
           {
             "id": "6",
             "startTime": "14:10",
             "endTime": "15:00",
-            "subjectId": "1757754756451"
+            "subjectId": "1764130698586"
           },
           {
             "id": "7",
             "startTime": "15:00",
             "endTime": "15:50",
-            "subjectId": "1757754756451"
+            "subjectId": "1764130722912"
           }
         ]
       },
@@ -164,42 +173,43 @@
             "id": "1",
             "startTime": "09:10",
             "endTime": "10:00",
-            "subjectId": "1757754636305"
+            "subjectId": "1764130698586"
           },
           {
             "id": "2",
             "startTime": "10:00",
             "endTime": "10:50",
-            "subjectId": "1757754604621"
+            "subjectId": "1764130730325"
           },
           {
             "id": "3",
             "startTime": "10:50",
             "endTime": "11:40",
-            "subjectId": "1757754650506"
+            "subjectId": "1764130778382"
           },
           {
             "id": "4",
             "startTime": "11:40",
             "endTime": "12:30",
-            "subjectId": "1757754624200"
+            "subjectId": "1764130715009"
           },
           {
             "id": "5",
             "startTime": "13:20",
             "endTime": "14:10",
-            "subjectId": "1757754624200"
+            "subjectId": "1764130795159"
           },
           {
             "id": "6",
             "startTime": "14:10",
             "endTime": "15:00",
-            "subjectId": "1757754673699"
+            "subjectId": "1764130795159"
           },
           {
             "id": "7",
             "startTime": "15:00",
-            "endTime": "15:50"
+            "endTime": "15:50",
+            "subjectId": "1764130795159"
           }
         ]
       },
@@ -210,43 +220,43 @@
             "id": "1",
             "startTime": "09:10",
             "endTime": "10:00",
-            "subjectId": "1757754616431"
+            "subjectId": "1764130722912"
           },
           {
             "id": "2",
             "startTime": "10:00",
             "endTime": "10:50",
-            "subjectId": "1757754730126"
+            "subjectId": "1764130698586"
           },
           {
             "id": "3",
             "startTime": "10:50",
             "endTime": "11:40",
-            "subjectId": "1757754730126"
+            "subjectId": "1764130722912"
           },
           {
             "id": "4",
             "startTime": "11:40",
             "endTime": "12:30",
-            "subjectId": "1757754730126"
+            "subjectId": "1764130685921"
           },
           {
             "id": "5",
             "startTime": "13:20",
             "endTime": "14:10",
-            "subjectId": "1757754673699"
+            "subjectId": "1764130705926"
           },
           {
             "id": "6",
             "startTime": "14:10",
             "endTime": "15:00",
-            "subjectId": "1757754650506"
+            "subjectId": "1764130685921"
           },
           {
             "id": "7",
             "startTime": "15:00",
             "endTime": "15:50",
-            "subjectId": "1757754636305"
+            "subjectId": "1764130705926"
           }
         ]
       },
@@ -257,43 +267,43 @@
             "id": "1",
             "startTime": "09:10",
             "endTime": "10:00",
-            "subjectId": "1757754650506"
+            "subjectId": "1764130730325"
           },
           {
             "id": "2",
             "startTime": "10:00",
             "endTime": "10:50",
-            "subjectId": "1757754636305"
+            "subjectId": "1764130840560"
           },
           {
             "id": "3",
             "startTime": "10:50",
             "endTime": "11:40",
-            "subjectId": "1757754743130"
+            "subjectId": "1764130840560"
           },
           {
             "id": "4",
             "startTime": "11:40",
             "endTime": "12:30",
-            "subjectId": "1757754743130"
+            "subjectId": "1764130840560"
           },
           {
             "id": "5",
             "startTime": "13:20",
             "endTime": "14:10",
-            "subjectId": "1757754604621"
+            "subjectId": "1764130698586"
           },
           {
             "id": "6",
             "startTime": "14:10",
             "endTime": "15:00",
-            "subjectId": "1757754624200"
+            "subjectId": "1764130715009"
           },
           {
             "id": "7",
             "startTime": "15:00",
             "endTime": "15:50",
-            "subjectId": "1757754673699"
+            "subjectId": "1764130685921"
           }
         ]
       },
@@ -304,43 +314,42 @@
             "id": "1",
             "startTime": "09:10",
             "endTime": "10:00",
-            "subjectId": "1757754624200"
+            "subjectId": "1764130705926"
           },
           {
             "id": "2",
             "startTime": "10:00",
             "endTime": "10:50",
-            "subjectId": "1757754604621"
+            "subjectId": "1764130730325"
           },
           {
             "id": "3",
             "startTime": "10:50",
             "endTime": "11:40",
-            "subjectId": "1757754636305"
+            "subjectId": "1764130705926"
           },
           {
             "id": "4",
             "startTime": "11:40",
-            "endTime": "12:30",
-            "subjectId": "1757754673699"
+            "endTime": "12:30"
           },
           {
             "id": "5",
             "startTime": "13:20",
             "endTime": "14:10",
-            "subjectId": "1757754616431"
+            "subjectId": "1764130730325"
           },
           {
             "id": "6",
             "startTime": "14:10",
             "endTime": "15:00",
-            "subjectId": "1757754604621"
+            "subjectId": "1764130722912"
           },
           {
             "id": "7",
             "startTime": "15:00",
             "endTime": "15:50",
-            "subjectId": "1757754636305"
+            "subjectId": "1764130715009"
           }
         ]
       }
@@ -348,191 +357,1201 @@
   },
   "attendanceRecords": [
     {
-      "date": "2025-10-01",
+      "date": "2025-11-01",
+      "day": "Saturday",
+      "timeSlotId": "1",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-01",
+      "day": "Saturday",
+      "timeSlotId": "2",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-01",
+      "day": "Saturday",
+      "timeSlotId": "3",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-01",
+      "day": "Saturday",
+      "timeSlotId": "5",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-01",
+      "day": "Saturday",
+      "timeSlotId": "6",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-01",
+      "day": "Saturday",
+      "timeSlotId": "7",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-08",
+      "day": "Saturday",
+      "timeSlotId": "1",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-08",
+      "day": "Saturday",
+      "timeSlotId": "2",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-08",
+      "day": "Saturday",
+      "timeSlotId": "3",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-08",
+      "day": "Saturday",
+      "timeSlotId": "5",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-08",
+      "day": "Saturday",
+      "timeSlotId": "6",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-08",
+      "day": "Saturday",
+      "timeSlotId": "7",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-03",
+      "day": "Monday",
+      "timeSlotId": "1",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-03",
+      "day": "Monday",
+      "timeSlotId": "2",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-03",
+      "day": "Monday",
+      "timeSlotId": "3",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-03",
+      "day": "Monday",
+      "timeSlotId": "4",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-03",
+      "day": "Monday",
+      "timeSlotId": "5",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-03",
+      "day": "Monday",
+      "timeSlotId": "6",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-10",
+      "day": "Monday",
+      "timeSlotId": "1",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-10",
+      "day": "Monday",
+      "timeSlotId": "2",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-10",
+      "day": "Monday",
+      "timeSlotId": "3",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-10",
+      "day": "Monday",
+      "timeSlotId": "4",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-10",
+      "day": "Monday",
+      "timeSlotId": "5",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-10",
+      "day": "Monday",
+      "timeSlotId": "6",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-17",
+      "day": "Monday",
+      "timeSlotId": "1",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-17",
+      "day": "Monday",
+      "timeSlotId": "2",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-17",
+      "day": "Monday",
+      "timeSlotId": "3",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-17",
+      "day": "Monday",
+      "timeSlotId": "4",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-17",
+      "day": "Monday",
+      "timeSlotId": "5",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-17",
+      "day": "Monday",
+      "timeSlotId": "6",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-18",
+      "day": "Tuesday",
+      "timeSlotId": "1",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-18",
+      "day": "Tuesday",
+      "timeSlotId": "2",
+      "subjectId": "1764130763336",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-18",
+      "day": "Tuesday",
+      "timeSlotId": "3",
+      "subjectId": "1764130763336",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-18",
+      "day": "Tuesday",
+      "timeSlotId": "4",
+      "subjectId": "1764130763336",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-18",
+      "day": "Tuesday",
+      "timeSlotId": "5",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-18",
+      "day": "Tuesday",
+      "timeSlotId": "6",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-18",
+      "day": "Tuesday",
+      "timeSlotId": "7",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-19",
       "day": "Wednesday",
       "timeSlotId": "1",
-      "subjectId": "1757754636305",
-      "status": "present"
+      "subjectId": "1764130698586",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-01",
+      "date": "2025-11-19",
       "day": "Wednesday",
       "timeSlotId": "2",
-      "subjectId": "1757754604621",
-      "status": "present"
+      "subjectId": "1764130730325",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-01",
+      "date": "2025-11-19",
       "day": "Wednesday",
       "timeSlotId": "3",
-      "subjectId": "1757754650506",
-      "status": "present"
+      "subjectId": "1764130778382",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-01",
+      "date": "2025-11-19",
       "day": "Wednesday",
       "timeSlotId": "4",
-      "subjectId": "1757754624200",
-      "status": "present"
+      "subjectId": "1764130715009",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-01",
+      "date": "2025-11-19",
       "day": "Wednesday",
       "timeSlotId": "5",
-      "subjectId": "1757754624200",
-      "status": "present"
+      "subjectId": "1764130795159",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-01",
+      "date": "2025-11-19",
       "day": "Wednesday",
       "timeSlotId": "6",
-      "subjectId": "1757754673699",
-      "status": "present"
+      "subjectId": "1764130795159",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-08",
+      "date": "2025-11-19",
       "day": "Wednesday",
+      "timeSlotId": "7",
+      "subjectId": "1764130795159",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-22",
+      "day": "Saturday",
       "timeSlotId": "1",
-      "subjectId": "1757754636305",
-      "status": "absent"
+      "subjectId": "1764130705926",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-08",
-      "day": "Wednesday",
+      "date": "2025-11-22",
+      "day": "Saturday",
       "timeSlotId": "2",
-      "subjectId": "1757754604621",
-      "status": "absent"
+      "subjectId": "1764130730325",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-08",
-      "day": "Wednesday",
+      "date": "2025-11-22",
+      "day": "Saturday",
       "timeSlotId": "3",
-      "subjectId": "1757754650506",
-      "status": "absent"
+      "subjectId": "1764130705926",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-08",
-      "day": "Wednesday",
-      "timeSlotId": "4",
-      "subjectId": "1757754624200",
-      "status": "absent"
-    },
-    {
-      "date": "2025-10-08",
-      "day": "Wednesday",
+      "date": "2025-11-22",
+      "day": "Saturday",
       "timeSlotId": "5",
-      "subjectId": "1757754624200",
-      "status": "absent"
+      "subjectId": "1764130730325",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-08",
-      "day": "Wednesday",
+      "date": "2025-11-22",
+      "day": "Saturday",
       "timeSlotId": "6",
-      "subjectId": "1757754673699",
-      "status": "absent"
+      "subjectId": "1764130722912",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-09",
+      "date": "2025-11-22",
+      "day": "Saturday",
+      "timeSlotId": "7",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-21",
+      "day": "Friday",
+      "timeSlotId": "1",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-21",
+      "day": "Friday",
+      "timeSlotId": "2",
+      "subjectId": "1764130840560",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-21",
+      "day": "Friday",
+      "timeSlotId": "3",
+      "subjectId": "1764130840560",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-21",
+      "day": "Friday",
+      "timeSlotId": "4",
+      "subjectId": "1764130840560",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-21",
+      "day": "Friday",
+      "timeSlotId": "5",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-21",
+      "day": "Friday",
+      "timeSlotId": "6",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-21",
+      "day": "Friday",
+      "timeSlotId": "7",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-20",
       "day": "Thursday",
       "timeSlotId": "1",
-      "subjectId": "1757754616431",
-      "status": "present"
+      "subjectId": "1764130722912",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-09",
+      "date": "2025-11-20",
       "day": "Thursday",
       "timeSlotId": "2",
-      "subjectId": "1757754730126",
-      "status": "present"
+      "subjectId": "1764130698586",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-09",
+      "date": "2025-11-20",
       "day": "Thursday",
       "timeSlotId": "3",
-      "subjectId": "1757754730126",
-      "status": "present"
+      "subjectId": "1764130722912",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-09",
+      "date": "2025-11-20",
       "day": "Thursday",
       "timeSlotId": "4",
-      "subjectId": "1757754730126",
-      "status": "present"
+      "subjectId": "1764130685921",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-09",
+      "date": "2025-11-20",
       "day": "Thursday",
       "timeSlotId": "5",
-      "subjectId": "1757754673699",
-      "status": "present"
+      "subjectId": "1764130705926",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-09",
+      "date": "2025-11-20",
       "day": "Thursday",
       "timeSlotId": "6",
-      "subjectId": "1757754650506",
-      "status": "present"
+      "subjectId": "1764130685921",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-09",
+      "date": "2025-11-20",
       "day": "Thursday",
       "timeSlotId": "7",
-      "subjectId": "1757754636305",
-      "status": "present"
+      "subjectId": "1764130705926",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-21",
+      "date": "2025-11-13",
+      "day": "Thursday",
+      "timeSlotId": "1",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-13",
+      "day": "Thursday",
+      "timeSlotId": "2",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-13",
+      "day": "Thursday",
+      "timeSlotId": "3",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-13",
+      "day": "Thursday",
+      "timeSlotId": "4",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-13",
+      "day": "Thursday",
+      "timeSlotId": "5",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-13",
+      "day": "Thursday",
+      "timeSlotId": "6",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-13",
+      "day": "Thursday",
+      "timeSlotId": "7",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-04",
       "day": "Tuesday",
       "timeSlotId": "1",
-      "subjectId": "1757754673699",
-      "status": "present"
+      "subjectId": "1764130715009",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-21",
+      "date": "2025-11-04",
       "day": "Tuesday",
       "timeSlotId": "2",
-      "subjectId": "1757754616431",
-      "status": "present"
+      "subjectId": "1764130763336",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-21",
+      "date": "2025-11-04",
       "day": "Tuesday",
       "timeSlotId": "3",
-      "subjectId": "1757754650506",
-      "status": "present"
+      "subjectId": "1764130763336",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-21",
+      "date": "2025-11-04",
       "day": "Tuesday",
       "timeSlotId": "4",
-      "subjectId": "1757754616431",
-      "status": "present"
+      "subjectId": "1764130763336",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-21",
+      "date": "2025-11-04",
       "day": "Tuesday",
       "timeSlotId": "5",
-      "subjectId": "1757754756451",
-      "status": "absent"
+      "subjectId": "1764130685921",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-21",
+      "date": "2025-11-04",
       "day": "Tuesday",
       "timeSlotId": "6",
-      "subjectId": "1757754756451",
-      "status": "absent"
+      "subjectId": "1764130698586",
+      "status": "cancelled"
     },
     {
-      "date": "2025-10-21",
+      "date": "2025-11-04",
       "day": "Tuesday",
       "timeSlotId": "7",
-      "subjectId": "1757754756451",
-      "status": "present"
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-05",
+      "day": "Wednesday",
+      "timeSlotId": "1",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-05",
+      "day": "Wednesday",
+      "timeSlotId": "2",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-05",
+      "day": "Wednesday",
+      "timeSlotId": "3",
+      "subjectId": "1764130778382",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-05",
+      "day": "Wednesday",
+      "timeSlotId": "4",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-05",
+      "day": "Wednesday",
+      "timeSlotId": "5",
+      "subjectId": "1764130795159",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-05",
+      "day": "Wednesday",
+      "timeSlotId": "6",
+      "subjectId": "1764130795159",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-05",
+      "day": "Wednesday",
+      "timeSlotId": "7",
+      "subjectId": "1764130795159",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-06",
+      "day": "Thursday",
+      "timeSlotId": "1",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-06",
+      "day": "Thursday",
+      "timeSlotId": "2",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-06",
+      "day": "Thursday",
+      "timeSlotId": "3",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-06",
+      "day": "Thursday",
+      "timeSlotId": "4",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-06",
+      "day": "Thursday",
+      "timeSlotId": "5",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-06",
+      "day": "Thursday",
+      "timeSlotId": "6",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-06",
+      "day": "Thursday",
+      "timeSlotId": "7",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-07",
+      "day": "Friday",
+      "timeSlotId": "1",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-07",
+      "day": "Friday",
+      "timeSlotId": "2",
+      "subjectId": "1764130840560",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-07",
+      "day": "Friday",
+      "timeSlotId": "3",
+      "subjectId": "1764130840560",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-07",
+      "day": "Friday",
+      "timeSlotId": "4",
+      "subjectId": "1764130840560",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-07",
+      "day": "Friday",
+      "timeSlotId": "5",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-07",
+      "day": "Friday",
+      "timeSlotId": "6",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-07",
+      "day": "Friday",
+      "timeSlotId": "7",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-14",
+      "day": "Friday",
+      "timeSlotId": "1",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-14",
+      "day": "Friday",
+      "timeSlotId": "2",
+      "subjectId": "1764130840560",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-14",
+      "day": "Friday",
+      "timeSlotId": "3",
+      "subjectId": "1764130840560",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-14",
+      "day": "Friday",
+      "timeSlotId": "4",
+      "subjectId": "1764130840560",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-14",
+      "day": "Friday",
+      "timeSlotId": "5",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-14",
+      "day": "Friday",
+      "timeSlotId": "6",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-14",
+      "day": "Friday",
+      "timeSlotId": "7",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-15",
+      "day": "Saturday",
+      "timeSlotId": "1",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-15",
+      "day": "Saturday",
+      "timeSlotId": "2",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-15",
+      "day": "Saturday",
+      "timeSlotId": "3",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-15",
+      "day": "Saturday",
+      "timeSlotId": "5",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-15",
+      "day": "Saturday",
+      "timeSlotId": "6",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-11-15",
+      "day": "Saturday",
+      "timeSlotId": "7",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-12-25",
+      "day": "Thursday",
+      "timeSlotId": "1",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-12-25",
+      "day": "Thursday",
+      "timeSlotId": "2",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-12-25",
+      "day": "Thursday",
+      "timeSlotId": "3",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-12-25",
+      "day": "Thursday",
+      "timeSlotId": "4",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-12-25",
+      "day": "Thursday",
+      "timeSlotId": "5",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-12-25",
+      "day": "Thursday",
+      "timeSlotId": "6",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2025-12-25",
+      "day": "Thursday",
+      "timeSlotId": "7",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-01",
+      "day": "Thursday",
+      "timeSlotId": "1",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-01",
+      "day": "Thursday",
+      "timeSlotId": "2",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-01",
+      "day": "Thursday",
+      "timeSlotId": "3",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-01",
+      "day": "Thursday",
+      "timeSlotId": "4",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-01",
+      "day": "Thursday",
+      "timeSlotId": "5",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-01",
+      "day": "Thursday",
+      "timeSlotId": "6",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-01",
+      "day": "Thursday",
+      "timeSlotId": "7",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-14",
+      "day": "Wednesday",
+      "timeSlotId": "1",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-14",
+      "day": "Wednesday",
+      "timeSlotId": "2",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-14",
+      "day": "Wednesday",
+      "timeSlotId": "3",
+      "subjectId": "1764130778382",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-14",
+      "day": "Wednesday",
+      "timeSlotId": "4",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-14",
+      "day": "Wednesday",
+      "timeSlotId": "5",
+      "subjectId": "1764130795159",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-14",
+      "day": "Wednesday",
+      "timeSlotId": "6",
+      "subjectId": "1764130795159",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-14",
+      "day": "Wednesday",
+      "timeSlotId": "7",
+      "subjectId": "1764130795159",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-26",
+      "day": "Monday",
+      "timeSlotId": "1",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-26",
+      "day": "Monday",
+      "timeSlotId": "2",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-26",
+      "day": "Monday",
+      "timeSlotId": "3",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-26",
+      "day": "Monday",
+      "timeSlotId": "4",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-26",
+      "day": "Monday",
+      "timeSlotId": "5",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-01-26",
+      "day": "Monday",
+      "timeSlotId": "6",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-04",
+      "day": "Wednesday",
+      "timeSlotId": "1",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-04",
+      "day": "Wednesday",
+      "timeSlotId": "2",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-04",
+      "day": "Wednesday",
+      "timeSlotId": "3",
+      "subjectId": "1764130778382",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-04",
+      "day": "Wednesday",
+      "timeSlotId": "4",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-04",
+      "day": "Wednesday",
+      "timeSlotId": "5",
+      "subjectId": "1764130795159",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-04",
+      "day": "Wednesday",
+      "timeSlotId": "6",
+      "subjectId": "1764130795159",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-04",
+      "day": "Wednesday",
+      "timeSlotId": "7",
+      "subjectId": "1764130795159",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-21",
+      "day": "Saturday",
+      "timeSlotId": "1",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-21",
+      "day": "Saturday",
+      "timeSlotId": "2",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-21",
+      "day": "Saturday",
+      "timeSlotId": "3",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-21",
+      "day": "Saturday",
+      "timeSlotId": "5",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-21",
+      "day": "Saturday",
+      "timeSlotId": "6",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-21",
+      "day": "Saturday",
+      "timeSlotId": "7",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-26",
+      "day": "Thursday",
+      "timeSlotId": "1",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-26",
+      "day": "Thursday",
+      "timeSlotId": "2",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-26",
+      "day": "Thursday",
+      "timeSlotId": "3",
+      "subjectId": "1764130722912",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-26",
+      "day": "Thursday",
+      "timeSlotId": "4",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-26",
+      "day": "Thursday",
+      "timeSlotId": "5",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-26",
+      "day": "Thursday",
+      "timeSlotId": "6",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-03-26",
+      "day": "Thursday",
+      "timeSlotId": "7",
+      "subjectId": "1764130705926",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-04-03",
+      "day": "Friday",
+      "timeSlotId": "1",
+      "subjectId": "1764130730325",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-04-03",
+      "day": "Friday",
+      "timeSlotId": "2",
+      "subjectId": "1764130840560",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-04-03",
+      "day": "Friday",
+      "timeSlotId": "3",
+      "subjectId": "1764130840560",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-04-03",
+      "day": "Friday",
+      "timeSlotId": "4",
+      "subjectId": "1764130840560",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-04-03",
+      "day": "Friday",
+      "timeSlotId": "5",
+      "subjectId": "1764130698586",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-04-03",
+      "day": "Friday",
+      "timeSlotId": "6",
+      "subjectId": "1764130715009",
+      "status": "cancelled"
+    },
+    {
+      "date": "2026-04-03",
+      "day": "Friday",
+      "timeSlotId": "7",
+      "subjectId": "1764130685921",
+      "status": "cancelled"
     }
   ],
   "settings": {
-    "holidays": [],
-    "examDays": []
+    "holidays": [
+      "2025-11-11",
+      "2025-11-12",
+      "2025-11-01",
+      "2025-11-08",
+      "2025-11-03",
+      "2025-11-10",
+      "2025-11-17",
+      "2025-11-18",
+      "2025-11-19",
+      "2025-11-22",
+      "2025-11-21",
+      "2025-11-20",
+      "2025-11-13",
+      "2025-11-04",
+      "2025-11-05",
+      "2025-11-06",
+      "2025-11-07",
+      "2025-11-14",
+      "2025-11-15",
+      "2025-12-25",
+      "2026-01-01",
+      "2026-01-14",
+      "2026-01-26",
+      "2026-03-04",
+      "2026-03-21",
+      "2026-03-26",
+      "2026-04-03"
+    ],
+    "examDays": [],
+    "semesterStart": "2025-11-24",
+    "semesterEnd": "2026-03-11"
   },
-  "exportDate": "2025-10-21T18:17:33.604Z"
+  "exportDate": "2025-11-27T14:07:15.465Z"
 }
