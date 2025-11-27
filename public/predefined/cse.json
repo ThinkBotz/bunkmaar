@@ -1,0 +1,22 @@
+{
+  "subjects": [
+    { "id": "s-cs1", "name": "Data Structures" },
+    { "id": "s-cs2", "name": "Operating Systems" }
+  ],
+  "timetable": {
+    "schedule": [
+      { "day": "Monday", "timeSlots": [{ "id": "c1", "subjectId": "s-cs1" }] },
+      { "day": "Wednesday", "timeSlots": [{ "id": "c2", "subjectId": "s-cs2" }] }
+    ]
+  },
+  "attendanceRecords": [
+    { "date": "2025-11-03", "timeSlotId": "c1", "subjectId": "s-cs1", "status": "present" },
+    { "date": "2025-11-04", "timeSlotId": "c2", "subjectId": "s-cs2", "status": "present" }
+  ],
+  "settings": {
+    "holidays": [],
+    "examDays": [],
+    "semesterStart": "2025-08-01",
+    "semesterEnd": "2026-05-31"
+  }
+}

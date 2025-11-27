@@ -1,0 +1,22 @@
+{
+  "subjects": [
+    { "id": "s-ai1", "name": "Machine Learning" },
+    { "id": "s-ai2", "name": "Artificial Intelligence" }
+  ],
+  "timetable": {
+    "schedule": [
+      { "day": "Monday", "timeSlots": [{ "id": "t1", "subjectId": "s-ai1" }, { "id": "t2", "subjectId": "s-ai2" }] },
+      { "day": "Tuesday", "timeSlots": [{ "id": "t3", "subjectId": "s-ai1" }] }
+    ]
+  },
+  "attendanceRecords": [
+    { "date": "2025-11-01", "timeSlotId": "t1", "subjectId": "s-ai1", "status": "present" },
+    { "date": "2025-11-02", "timeSlotId": "t2", "subjectId": "s-ai2", "status": "absent" }
+  ],
+  "settings": {
+    "holidays": [],
+    "examDays": [],
+    "semesterStart": "2025-08-01",
+    "semesterEnd": "2026-05-31"
+  }
+}
