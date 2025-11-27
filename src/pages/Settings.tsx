@@ -209,7 +209,7 @@ export default function Settings() {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-base">Version</span>
-                  <span className="font-medium text-foreground">1.2.3</span>
+                  <span className="font-medium text-foreground">1.3</span>
                 </div>
               </div>
             </div>
