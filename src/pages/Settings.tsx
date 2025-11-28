@@ -95,8 +95,8 @@ export default function Settings() {
 
   // Predefined datasets available in `public/predefined/`
   const predefinedDatasets = [
-    { id: 'aiml', label: 'AI / ML Sample', path: '/predefined/aiml.json' },
-    { id: 'cse', label: 'CSE Sample', path: '/predefined/cse.json' },
+    { id: 'aiml', label: 'AI&ML - 3rd Year', path: '/predefined/aiml_3.json' },
+    { id: 'cse', label: 'AI&DS - 3rd Year', path: '/predefined/AIDS_3.json' },
   ];
 
   const applyPredefined = async (datasetPath: string) => {
