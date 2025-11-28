@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Layout } from "./components/Layout";
 
 // Lazy load pages for code splitting
@@ -15,6 +15,7 @@ const Subjects = lazy(() => import("./pages/Subjects"));
 const Settings = lazy(() => import("./pages/Settings"));
 const Diagnostics = lazy(() => import("./pages/Diagnostics"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Login = lazy(() => import("./pages/Login"));
 
 // Loading component for lazy routes
 const PageLoader = () => (
@@ -25,7 +26,10 @@ const PageLoader = () => (
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const App = () => {
+  const isAuthenticated = typeof window !== 'undefined' && !!localStorage.getItem('google_credential');
+
+  return (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <TooltipProvider>
@@ -33,7 +37,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Layout />}>
+            <Route path="/" element={isAuthenticated ? <Layout /> : <Navigate to="/login" replace />}>
               <Route index element={
                 <Suspense fallback={<PageLoader />}>
                   <Today />
@@ -65,6 +69,11 @@ const App = () => (
                 </Suspense>
               } />
             </Route>
+            <Route path="/login" element={
+              <Suspense fallback={<PageLoader />}>
+                <Login />
+              </Suspense>
+            } />
             <Route path="*" element={
               <Suspense fallback={<PageLoader />}>
                 <NotFound />
@@ -75,6 +84,7 @@ const App = () => (
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
-);
+  );
+};
 
 export default App;
