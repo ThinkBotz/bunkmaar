@@ -6,6 +6,9 @@ import { ThemeProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import { RequireAuth } from "./hooks/useAuth";
 
 // Lazy load pages for code splitting
 const Today = lazy(() => import("./pages/Today"));
@@ -33,36 +36,50 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/" element={<Layout />}>
               <Route index element={
-                <Suspense fallback={<PageLoader />}>
-                  <Today />
-                </Suspense>
+                <RequireAuth>
+                  <Suspense fallback={<PageLoader />}>
+                    <Today />
+                  </Suspense>
+                </RequireAuth>
               } />
               <Route path="timetable" element={
-                <Suspense fallback={<PageLoader />}>
-                  <Timetable />
-                </Suspense>
+                <RequireAuth>
+                  <Suspense fallback={<PageLoader />}>
+                    <Timetable />
+                  </Suspense>
+                </RequireAuth>
               } />
               <Route path="calendar" element={
-                <Suspense fallback={<PageLoader />}>
-                  <Calendar />
-                </Suspense>
+                <RequireAuth>
+                  <Suspense fallback={<PageLoader />}>
+                    <Calendar />
+                  </Suspense>
+                </RequireAuth>
               } />
               <Route path="subjects" element={
-                <Suspense fallback={<PageLoader />}>
-                  <Subjects />
-                </Suspense>
+                <RequireAuth>
+                  <Suspense fallback={<PageLoader />}>
+                    <Subjects />
+                  </Suspense>
+                </RequireAuth>
               } />
               <Route path="settings" element={
-                <Suspense fallback={<PageLoader />}>
-                  <Settings />
-                </Suspense>
+                <RequireAuth>
+                  <Suspense fallback={<PageLoader />}>
+                    <Settings />
+                  </Suspense>
+                </RequireAuth>
               } />
               <Route path="diagnostics" element={
-                <Suspense fallback={<PageLoader />}>
-                  <Diagnostics />
-                </Suspense>
+                <RequireAuth>
+                  <Suspense fallback={<PageLoader />}>
+                    <Diagnostics />
+                  </Suspense>
+                </RequireAuth>
               } />
             </Route>
             <Route path="*" element={
