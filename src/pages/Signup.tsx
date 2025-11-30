@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 const Signup: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -51,7 +52,21 @@ const Signup: React.FC = () => {
           </div>
           <div>
             <label className="block text-sm mb-1">Password</label>
-            <Input value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+            <div className="relative">
+              <Input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type={showPassword ? "text" : "password"}
+              />
+              <button
+                type="button"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                onClick={() => setShowPassword((s) => !s)}
+                className="absolute inset-y-0 right-2 flex items-center px-2 text-sm text-muted-foreground"
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
           </div>
           <div className="flex items-center justify-between">
             <Button type="submit" disabled={loading}>{loading ? "Creating..." : "Create account"}</Button>
