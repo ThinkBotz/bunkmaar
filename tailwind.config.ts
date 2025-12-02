@@ -21,6 +21,14 @@ export default {
       '2xl': '1536px',
     },
     extend: {
+      backdropBlur: {
+        'glass': '20px',
+        'glass-heavy': '40px',
+        'glass-light': '12px',
+      },
+      backdropSaturate: {
+        '180': '1.8',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -86,18 +94,31 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        xl: "var(--radius-xl)",
+        '2xl': "1.75rem",
+        '3xl': "2rem",
       },
       backgroundImage: {
         'gradient-primary': 'var(--gradient-primary)',
         'gradient-background': 'var(--gradient-background)',
         'gradient-card': 'var(--gradient-card)',
+        'gradient-mesh': 'var(--gradient-mesh)',
       },
       boxShadow: {
+        'sm': 'var(--shadow-sm)',
         'card': 'var(--shadow-card)',
         'hover': 'var(--shadow-hover)',
+        'elevated': 'var(--shadow-elevated)',
+        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+        'glass-dark': '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
       },
       transitionTimingFunction: {
-        'smooth': 'var(--transition-smooth)',
+        'smooth': 'var(--ease-smooth)',
+        'bounce': 'var(--ease-bounce)',
+        'spring': 'var(--ease-spring)',
+      },
+      transitionDuration: {
+        '400': '400ms',
       },
       keyframes: {
         "accordion-down": {

@@ -22,7 +22,12 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 // Loading component for lazy routes
 const PageLoader = () => (
   <div className="flex items-center justify-center min-h-[200px]">
-    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+    <div className="relative">
+      {/* iOS-style spinner with glassmorphic background */}
+      <div className="w-16 h-16 rounded-2xl bg-card/40 dark:bg-card/30 backdrop-blur-2xl shadow-card flex items-center justify-center">
+        <div className="w-8 h-8 border-3 border-primary/30 border-t-primary rounded-full animate-spin" />
+      </div>
+    </div>
   </div>
 );
 
@@ -30,7 +35,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
       <TooltipProvider>
         <Toaster />
         <Sonner />

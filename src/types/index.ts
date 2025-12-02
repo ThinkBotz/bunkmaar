@@ -52,6 +52,7 @@ export interface User {
   id: string;
   name: string;
   avatarUrl?: string;
+  year?: '1st' | '2nd' | '3rd' | '4th';
   createdAt: Date;
 }
 

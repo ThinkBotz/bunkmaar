@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '@/store/useAppStore';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, BookOpen, Trash2, Pencil } from 'lucide-react';
+import { Plus, BookOpen, Trash2, Pencil, ChevronLeft } from 'lucide-react';
 import { toast } from 'sonner';
 
 const subjectColors = [
@@ -14,6 +15,7 @@ const subjectColors = [
 ];
 
 export default function Subjects() {
+  const navigate = useNavigate();
   const subjects = useAppStore((state) => state.subjects);
   const addSubject = useAppStore((state) => state.addSubject);
   const removeSubject = useAppStore((state) => state.removeSubject);
@@ -57,6 +59,16 @@ export default function Subjects() {
 
   return (
     <div className="space-y-4 pb-20 xs:pb-24">
+      {/* iOS-style back button */}
+      <Button
+        variant="ghost"
+        onClick={() => navigate('/settings')}
+        className="-ml-2 mb-2 gap-1 text-primary hover:bg-primary/10 rounded-xl"
+      >
+        <ChevronLeft className="h-5 w-5" />
+        <span className="text-sm font-medium">Settings</span>
+      </Button>
+      
       {/* Enhanced mobile header */}
       <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-3 xs:gap-4">
         <div>

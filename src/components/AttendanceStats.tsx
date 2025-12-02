@@ -98,32 +98,76 @@ export const AttendanceStats = () => {
     monthlyPercentage: monthlyStats.percentage,
   };
 
-  const getPercentageColor = (percentage: number) => {
-    // Empty - color is handled together with background to ensure correct contrast
-    return '';
+  const getPercentageStyles = (percentage: number) => {
+    // iOS-style semantic colors with tinted backgrounds
+    if (percentage >= 75) {
+      return {
+        bg: 'bg-success/15 dark:bg-success/20',
+        text: 'text-success dark:text-success',
+        glow: 'shadow-success/20',
+      };
+    }
+    if (percentage >= 60) {
+      return {
+        bg: 'bg-warning/15 dark:bg-warning/20',
+        text: 'text-warning dark:text-warning',
+        glow: 'shadow-warning/20',
+      };
+    }
+    return {
+      bg: 'bg-destructive/15 dark:bg-destructive/20',
+      text: 'text-destructive dark:text-destructive',
+      glow: 'shadow-destructive/20',
+    };
   };
 
-  const getPercentageBg = (percentage: number) => {
-    // Stronger light-mode contrast and appropriate dark-mode fallbacks
-    if (percentage >= 75) return 'bg-success/20 text-success-800 dark:bg-success-600 dark:text-success-foreground';
-    if (percentage >= 60) return 'bg-warning/20 text-warning-800 dark:bg-warning-600 dark:text-warning-foreground';
-    return 'bg-destructive/20 text-destructive-800 dark:bg-destructive-600 dark:text-destructive-foreground';
-  };
+  const styles = getPercentageStyles(stats.percentage);
 
   return (
-    <Card className="bg-gradient-card shadow-card border-0 p-4 sm:p-6 w-full">
-      <div className="flex items-center justify-between w-full">
-        <h2 className="text-xl sm:text-2xl font-bold text-foreground whitespace-nowrap tracking-tight">
-          Attendance 
-        </h2>
-        <div className={cn(
-          "text-lg font-semibold whitespace-nowrap px-2 py-0.5 rounded-lg",
-          getPercentageBg(stats.percentage),
-          getPercentageColor(stats.percentage)
-        )}>
-          {stats.percentage.toFixed(1)}% Overall
+    <div className="relative">
+      {/* Glassmorphic card with iOS-style material layers */}
+      <Card className="relative overflow-hidden border-0 bg-card/40 dark:bg-card/30 backdrop-blur-2xl backdrop-saturate-180 shadow-card hover:shadow-elevated transition-all duration-500 ease-smooth">
+        {/* Subtle gradient overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 pointer-events-none" />
+        
+        {/* Content */}
+        <div className="relative p-5 xs:p-6 sm:p-7">
+          <div className="flex items-center justify-between gap-4">
+            {/* Title with premium typography */}
+            <h2 className="text-xl xs:text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
+              Attendance
+            </h2>
+            
+            {/* Percentage badge with iOS-style pill design */}
+            <div className={cn(
+              "relative flex items-center justify-center",
+              "px-4 xs:px-5 py-2 xs:py-2.5 rounded-2xl",
+              "font-semibold text-base xs:text-lg",
+              "backdrop-blur-xl transition-all duration-300 ease-smooth",
+              "shadow-lg",
+              styles.bg,
+              styles.text,
+              styles.glow
+            )}>
+              {/* Subtle inner glow */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
+              
+              {/* Percentage text */}
+              <span className="relative z-10 tabular-nums">
+                {stats.percentage.toFixed(1)}%
+              </span>
+              
+              {/* Micro label */}
+              <span className="relative z-10 ml-1.5 text-xs font-medium opacity-80">
+                Overall
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
-    </Card>
+        
+        {/* Bottom border highlight */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 dark:via-white/5 to-transparent" />
+      </Card>
+    </div>
   );
 };

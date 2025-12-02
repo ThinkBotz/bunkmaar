@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Clock, Edit3, Save, BookOpen } from 'lucide-react';
+import { Clock, Edit3, Save, BookOpen, ChevronLeft } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function Timetable() {
@@ -40,6 +40,16 @@ export default function Timetable() {
 
   return (
     <div className="space-y-6 pb-24">
+      {/* iOS-style back button */}
+      <Button
+        variant="ghost"
+        onClick={() => navigate('/settings')}
+        className="-ml-2 mb-2 gap-1 text-primary hover:bg-primary/10 rounded-xl"
+      >
+        <ChevronLeft className="h-5 w-5" />
+        <span className="text-sm font-medium">Settings</span>
+      </Button>
+      
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Timetable</h1>

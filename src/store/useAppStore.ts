@@ -49,6 +49,7 @@ interface AppState {
   switchUser: (id: string) => void;
   removeUser: (id: string) => void;
   renameUser: (id: string, name: string) => void;
+  updateUserProfile: (id: string, updates: { name?: string; year?: '1st' | '2nd' | '3rd' | '4th' }) => void;
   
   // Import/Export actions
   importData: (data: { subjects: Subject[]; timetable: Timetable; attendanceRecords: AttendanceRecord[]; settings?: AcademicSettings }) => void;
@@ -467,6 +468,23 @@ export const useAppStore = create<AppState>()(
           if (!name || !name.trim()) return {} as any;
           const profiles = { ...state.profiles };
           profiles[id] = { ...profiles[id], user: { ...profiles[id].user, name: name.trim() } };
+          const users = Object.values(profiles).map(p => p.user);
+          return { profiles, users };
+        });
+      },
+
+      updateUserProfile: (id, updates) => {
+        set((state) => {
+          if (!state.profiles[id]) return {} as any;
+          const profiles = { ...state.profiles };
+          const updatedUser = { ...profiles[id].user };
+          if (updates.name !== undefined && updates.name.trim()) {
+            updatedUser.name = updates.name.trim();
+          }
+          if (updates.year !== undefined) {
+            updatedUser.year = updates.year;
+          }
+          profiles[id] = { ...profiles[id], user: updatedUser };
           const users = Object.values(profiles).map(p => p.user);
           return { profiles, users };
         });

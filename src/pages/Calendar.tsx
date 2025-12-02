@@ -339,19 +339,19 @@ export default function Calendar() {
       {/* Optimized single-row stats grid */}
       <div className="flex flex-col gap-3">
         <div className="grid grid-cols-4 gap-1 xs:gap-2 w-full">
-          <Card className="bg-gradient-card shadow-card border border-[hsl(var(--card-border))] dark:border-[hsl(var(--card-border))] backdrop-blur-sm p-1.5 xs:p-2 text-center">
+          <Card className="relative overflow-hidden border-0 bg-card/40 dark:bg-card/30 backdrop-blur-2xl backdrop-saturate-180 shadow-card hover:shadow-elevated transition-all duration-300 ease-smooth text-center p-3 xs:p-4 sm:p-6">
             <div className="text-sm xs:text-base sm:text-lg font-bold text-success">{stats.presentClasses}</div>
             <div className="text-[9px] xs:text-[10px] text-muted-foreground">Attended</div>
           </Card>
-          <Card className="bg-gradient-card shadow-card border border-[hsl(var(--card-border))] dark:border-[hsl(var(--card-border))] backdrop-blur-sm p-1.5 xs:p-2 text-center">
+          <Card className="relative overflow-hidden border-0 bg-card/40 dark:bg-card/30 backdrop-blur-2xl backdrop-saturate-180 shadow-card hover:shadow-elevated transition-all duration-300 ease-smooth text-center p-3 xs:p-4 sm:p-6">
             <div className="text-sm xs:text-base sm:text-lg font-bold text-warning">{stats.absentClasses}</div>
             <div className="text-[9px] xs:text-[10px] text-muted-foreground">Missed</div>
           </Card>
-          <Card className="bg-gradient-card shadow-card border border-[hsl(var(--card-border))] dark:border-[hsl(var(--card-border))] backdrop-blur-sm p-1.5 xs:p-2 text-center">
+          <Card className="relative overflow-hidden border-0 bg-card/40 dark:bg-card/30 backdrop-blur-2xl backdrop-saturate-180 shadow-card hover:shadow-elevated transition-all duration-300 ease-smooth text-center p-3 xs:p-4 sm:p-6">
             <div className="text-sm xs:text-base sm:text-lg font-bold text-neutral">{stats.cancelledClasses}</div>
             <div className="text-[9px] xs:text-[10px] text-muted-foreground">No Class</div>
           </Card>
-          <Card className="bg-gradient-card shadow-card border border-[hsl(var(--card-border))] dark:border-[hsl(var(--card-border))] backdrop-blur-sm p-1.5 xs:p-2 text-center">
+      <Card className="relative overflow-hidden border-0 bg-card/40 dark:bg-card/30 backdrop-blur-2xl backdrop-saturate-180 shadow-card hover:shadow-elevated transition-all duration-300 ease-smooth text-center p-3 xs:p-4 sm:p-6">
             <div className="text-sm xs:text-base sm:text-lg font-bold text-primary">{stats.percentage.toFixed(1)}%</div>
             <div className="text-[9px] xs:text-[10px] text-muted-foreground">Overall</div>
           </Card>
@@ -370,7 +370,7 @@ export default function Calendar() {
         </div>
       </div>
       {/* Interactive Calendar - Enhanced for mobile */}
-      <Card className="bg-gradient-card shadow-card border border-[hsl(var(--card-border))] dark:border-[hsl(var(--card-border))] backdrop-blur-sm p-3 xs:p-4 sm:p-6">
+          <Card className="relative overflow-hidden border-0 bg-card/40 dark:bg-card/30 backdrop-blur-2xl backdrop-saturate-180 shadow-card hover:shadow-elevated transition-all duration-300 ease-smooth">
         <div className="text-center mb-4">
           <h2 className="text-lg xs:text-xl font-semibold text-foreground mb-2">Select a Date</h2>
           <p className="text-xs xs:text-sm text-muted-foreground">Tap on a date to view and edit attendance</p>
@@ -599,7 +599,7 @@ export default function Calendar() {
       
 
       {/* Enhanced Monthly Attendance Overview */}
-      <Card className="bg-gradient-card shadow-card border border-[hsl(var(--section-border))] dark:border-[hsl(var(--section-border))] backdrop-blur-sm p-4 xs:p-6">
+          <Card className="relative overflow-hidden border-0 bg-card/40 dark:bg-card/30 backdrop-blur-2xl backdrop-saturate-180 shadow-card hover:shadow-elevated transition-all duration-300 ease-smooth text-center p-4">
         <div className="mb-4">
           <h2 className="text-lg xs:text-xl font-semibold text-foreground mb-2">📊 Monthly Overview</h2>
           <p className="text-muted-foreground text-xs xs:text-sm">Select a month to view detailed analysis</p>

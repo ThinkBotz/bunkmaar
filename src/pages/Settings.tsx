@@ -1,7 +1,6 @@
 import { Card } from '@/components/ui/card';
-import Diagnostics from './Diagnostics';
 import { Button } from '@/components/ui/button';
-import { Settings as SettingsIcon, Download, Upload, Trash2, Info, User, Phone, Mail, Instagram } from 'lucide-react';
+import { Settings as SettingsIcon, Info, User, Phone, Mail, Instagram, BookOpen, Clock, LogOut, ChevronRight, ChevronDown } from 'lucide-react';
 import { useAppStore } from '@/store/useAppStore';
 import { toast } from 'sonner';
 import { useRef, useState } from 'react';
@@ -9,12 +8,20 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { UserProfileSelector } from '@/components/UserProfileSelector';
+import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { auth } from '@/lib/firebase';
+import { useAuthState } from '@/hooks/useAuth';
+// Removed custom profile form; keeping original profile selector
 
 export default function Settings() {
-  const [showDiagnostics, setShowDiagnostics] = useState(false);
+  const navigate = useNavigate();
+  const { user } = useAuthState();
+  
   const [showDataManagement, setShowDataManagement] = useState(false);
   const [showAcademicSettings, setShowAcademicSettings] = useState(false);
   const [showAppInfo, setShowAppInfo] = useState(false);
+  const [theme, setTheme] = useState(false);
   const subjects = useAppStore((state) => state.subjects);
   const timetable = useAppStore((state) => state.timetable);
   const attendanceRecords = useAppStore((state) => state.attendanceRecords);
@@ -25,11 +32,14 @@ export default function Settings() {
   const addExamDay = useAppStore((state) => state.addExamDay);
   const removeExamDay = useAppStore((state) => state.removeExamDay);
   const setSemester = useAppStore((state) => state.setSemester);
+  // Revert: no direct profile editing form here
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [holidayInput, setHolidayInput] = useState('');
   const [examDayInput, setExamDayInput] = useState('');
   const [semesterStart, setSemesterStart] = useState<string>(settings.semesterStart || '');
   const [semesterEnd, setSemesterEnd] = useState<string>(settings.semesterEnd || '');
+  
+  // Removed profile form state
 
   const exportData = () => {
     const data = {
@@ -119,8 +129,19 @@ export default function Settings() {
   };
 
 
-  const [showAppearance, setShowAppearance] = useState(false);
-  const [showProfileSettings, setShowProfileSettings] = useState(true);
+  const [showProfileSettings, setShowProfileSettings] = useState(false);
+
+  const onSignOut = async () => {
+    try {
+      await signOut(auth);
+      toast.success('Signed out');
+      navigate('/login', { replace: true });
+    } catch (err: any) {
+      toast.error(err?.message || 'Failed to sign out');
+    }
+  };
+
+  // Removed profile submit handler
 
   return (
     <div className="space-y-4 sm:space-y-6 pb-20 sm:pb-24">
@@ -129,251 +150,288 @@ export default function Settings() {
         <p className="text-muted-foreground text-sm sm:text-base">Manage your app preferences</p>
       </div>
 
-      {/* Profile Settings */}
-      <Card className="p-4 sm:p-6 bg-gradient-to-br from-primary/5 to-background">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <User className="h-6 w-6 text-primary" />
-            <h2 className="text-xl font-semibold">Profile Settings</h2>
+      {/* Profile tile */}
+      <Card className="p-0 overflow-hidden border-0 bg-card/40 backdrop-blur-2xl shadow-card">
+        <button
+          onClick={() => setShowProfileSettings(true)}
+          className="w-full flex items-center justify-between px-4 sm:px-5 py-4 sm:py-5 hover:bg-card/50 transition-colors"
+        >
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <User className="h-5 w-5 text-primary" />
+            </div>
+            <div className="text-left">
+              <div className="text-base sm:text-lg font-semibold">{user?.email || 'Profile'}</div>
+            </div>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
+          <ChevronRight className="h-5 w-5 text-muted-foreground" />
+        </button>
+      </Card>
+
+      <div className="px-1 text-sm text-muted-foreground">Settings</div>
+
+      {/* Unified settings list with collapsible rows */}
+      <Card className="p-0 overflow-hidden border-0 bg-card/40 backdrop-blur-2xl shadow-card">
+        <div className="divide-y divide-border/60">
+          <button
+            className="w-full flex items-center justify-between px-4 sm:px-5 py-4 hover:bg-card/50"
             onClick={() => setShowProfileSettings((v) => !v)}
           >
-            {showProfileSettings ? 'Hide' : 'Show'}
-          </Button>
-        </div>
-        {showProfileSettings && (
-          <div className="space-y-4">
-            <div className="p-4 bg-card rounded-lg border shadow-sm">
-              <UserProfileSelector />
+            <div className="flex items-center gap-3">
+              <User className="h-5 w-5 text-muted-foreground" />
+              <span className="text-sm sm:text-base">Profile details</span>
             </div>
-          </div>
-        )}
-      </Card>
+            <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${showProfileSettings ? 'rotate-180' : ''}`} />
+          </button>
+          {showProfileSettings && (
+            <div className="px-4 sm:px-5 py-4 bg-card/40">
+              <div className="p-3 rounded-lg border border-border/50 bg-background/50">
+                <UserProfileSelector />
+              </div>
+            </div>
+          )}
 
-      {/* Appearance Settings */}
-      <Card className="p-4 sm:p-6 bg-gradient-to-br from-primary/5 to-background">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <SettingsIcon className="h-6 w-6 text-primary" />
-            <h2 className="text-xl font-semibold">Appearance</h2>
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowAppearance((v) => !v)}
-          >
-            {showAppearance ? 'Hide' : 'Show'}
-          </Button>
-        </div>
-        {showAppearance && (
-          <div className="space-y-4">
-            <div className="p-4 bg-card rounded-lg border shadow-sm">
-              <div className="flex items-center justify-between">
-                <Label className="text-base">Theme Mode</Label>
+          
+            <button
+              className="w-full flex items-center justify-between px-4 sm:px-5 py-4 hover:bg-card/50"
+              onClick={() => setTheme(v => !v)}
+            >
+              <div className="flex items-center gap-3">
+<SettingsIcon className="h-5 w-5 text-muted-foreground" />                <span className="text-sm sm:text-base">Theme</span>
+              </div>
+              <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${theme ? 'rotate-180' : ''}`} />
+            </button>
+            {theme && (
+              <div className="w-full flex items-center justify-between px-4 sm:px-5 py-4">
+                <div className="flex items-center gap-3">
+<br></br>                  <span className="text-sm sm:text-base">Dark/Light</span>
+                </div>
                 <ThemeToggle />
               </div>
-            </div>
-          </div>
-        )}
-      </Card>
+            )}
 
-      {/* App Info */}
-      <Card className="p-4 sm:p-6 bg-gradient-to-br from-primary/5 to-background">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <Info className="h-6 w-6 text-primary" />
-            <h2 className="text-xl font-semibold">App Information</h2>
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowAppInfo(!showAppInfo)}
+                
+
+          
+
+          {/* Academic Settings collapsible */}
+          <button
+            className="w-full flex items-center justify-between px-4 sm:px-5 py-4 hover:bg-card/50"
+            onClick={() => setShowAcademicSettings(v => !v)}
           >
-            {showAppInfo ? 'Hide' : 'Show'}
-          </Button>
-        </div>
-        {showAppInfo && (
-          <div className="space-y-4">
-            <div className="p-4 bg-card rounded-lg border shadow-sm">
+            <div className="flex items-center gap-3">
+              <SettingsIcon className="h-5 w-5 text-muted-foreground" />
+              <span className="text-sm sm:text-base">Academic Settings</span>
+            </div>
+            <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${showAcademicSettings ? 'rotate-180' : ''}`} />
+          </button>
+          {showAcademicSettings && (
+            <div className="px-4 sm:px-5 py-4 space-y-6 bg-card/40">
               <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-base">Total Subjects</span>
-                  <span className="font-medium text-foreground">{subjects.length}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-base">Attendance Records</span>
-                  <span className="font-medium text-foreground">{attendanceRecords.length}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-base">Version</span>
-                  <span className="font-medium text-foreground">1.3</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </Card>
-
-      {/* Academic Settings */}
-      <Card className="p-4 sm:p-6 bg-gradient-to-br from-primary/5 to-background">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <SettingsIcon className="h-6 w-6 text-primary" />
-            <h2 className="text-xl font-semibold">Academic Settings</h2>
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowAcademicSettings(!showAcademicSettings)}
-          >
-            {showAcademicSettings ? 'Hide' : 'Show'}
-          </Button>
-        </div>
-        
-        {showAcademicSettings && (
-          <div className="space-y-4">
-            <div className="p-4 bg-card rounded-lg border shadow-sm space-y-6">
-              <div>
-                <h3 className="text-base font-semibold mb-4">Semester Duration</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="semesterStart" className="text-sm">Semester Start</Label>
+                <h3 className="text-sm font-semibold">Semester Duration</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="semesterStart" className="text-xs">Semester Start</Label>
                     <Input id="semesterStart" type="date" value={semesterStart} onChange={(e) => setSemesterStart(e.target.value)} />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="semesterEnd" className="text-sm">Semester End</Label>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="semesterEnd" className="text-xs">Semester End</Label>
                     <Input id="semesterEnd" type="date" value={semesterEnd} onChange={(e) => setSemesterEnd(e.target.value)} />
                   </div>
                 </div>
-                <div className="flex justify-end mt-4">
-                  <Button variant="outline" onClick={() => { setSemester(semesterStart || undefined, semesterEnd || undefined); toast.success('Semester dates saved'); }}>
-                    Save Semester
-                  </Button>
+                <div className="flex justify-end">
+                  <Button size="sm" variant="outline" onClick={() => { setSemester(semesterStart || undefined, semesterEnd || undefined); toast.success('Semester dates saved'); }}>Save</Button>
                 </div>
               </div>
-
-              <div className="pt-4 border-t">
-                <h3 className="text-base font-semibold mb-4">Holidays</h3>
-                <div className="space-y-4">
-                  <div className="flex gap-2">
-                    <Input type="date" value={holidayInput} onChange={(e) => setHolidayInput(e.target.value)} className="flex-1" />
-                    <Button onClick={() => { if (holidayInput) { addHoliday(holidayInput); setHolidayInput(''); toast.success('Holiday added'); } }}>
-                      Add Holiday
-                    </Button>
-                  </div>
-                  {settings.holidays?.length ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {settings.holidays.map((d) => (
-                        <div key={d} className="flex items-center justify-between p-2 bg-background rounded border">
-                          <span className="text-sm text-foreground">🔵 {d}</span>
-                          <Button size="sm" variant="ghost" onClick={() => removeHoliday(d)}>Remove</Button>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="text-sm text-muted-foreground">No holidays added</p>
-                  )}
+              <div className="space-y-3 border-t pt-4">
+                <h3 className="text-sm font-semibold">Holidays</h3>
+                <div className="flex gap-2">
+                  <Input type="date" value={holidayInput} onChange={(e) => setHolidayInput(e.target.value)} className="flex-1" />
+                  <Button size="sm" onClick={() => { if (holidayInput) { addHoliday(holidayInput); setHolidayInput(''); toast.success('Holiday added'); } }}>Add</Button>
                 </div>
-              </div>
-
-              <div className="pt-4 border-t">
-                <h3 className="text-base font-semibold mb-4">Exam Days</h3>
-                <div className="space-y-4">
-                  <div className="flex gap-2">
-                    <Input type="date" value={examDayInput} onChange={(e) => setExamDayInput(e.target.value)} className="flex-1" />
-                    <Button onClick={() => { if (examDayInput) { addExamDay(examDayInput); setExamDayInput(''); toast.success('Exam day added'); } }}>
-                      Add Exam Day
-                    </Button>
+                {settings.holidays?.length ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {settings.holidays.map(d => (
+                      <div key={d} className="flex items-center justify-between p-2 rounded border bg-background/50 text-xs">
+                        <span>🔵 {d}</span>
+                        <Button size="sm" variant="ghost" onClick={() => removeHoliday(d)}>Remove</Button>
+                      </div>
+                    ))}
                   </div>
-                  {settings.examDays?.length ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {settings.examDays.map((d) => (
-                        <div key={d} className="flex items-center justify-between p-2 bg-background rounded border">
-                          <span className="text-sm text-foreground">📚 {d}</span>
-                          <Button size="sm" variant="ghost" onClick={() => removeExamDay(d)}>Remove</Button>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="text-sm text-muted-foreground">No exam days added</p>
-                  )}
+                ) : <p className="text-xs text-muted-foreground">No holidays added</p>}
+              </div>
+              <div className="space-y-3 border-t pt-4">
+                <h3 className="text-sm font-semibold">Exam Days</h3>
+                <div className="flex gap-2">
+                  <Input type="date" value={examDayInput} onChange={(e) => setExamDayInput(e.target.value)} className="flex-1" />
+                  <Button size="sm" onClick={() => { if (examDayInput) { addExamDay(examDayInput); setExamDayInput(''); toast.success('Exam day added'); } }}>Add</Button>
+                </div>
+                {settings.examDays?.length ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {settings.examDays.map(d => (
+                      <div key={d} className="flex items-center justify-between p-2 rounded border bg-background/50 text-xs">
+                        <span>📚 {d}</span>
+                        <Button size="sm" variant="ghost" onClick={() => removeExamDay(d)}>Remove</Button>
+                      </div>
+                    ))}
+                  </div>
+                ) : <p className="text-xs text-muted-foreground">No exam days added</p>}
+              </div>
+            </div>
+          )}
+
+          {/* Data Management collapsible */}
+          <button
+            className="w-full flex items-center justify-between px-4 sm:px-5 py-4 hover:bg-card/50"
+            onClick={() => setShowDataManagement(v => !v)}
+          >
+            <div className="flex items-center gap-3">
+              <SettingsIcon className="h-5 w-5 text-muted-foreground" />
+              <span className="text-sm sm:text-base">Data Management</span>
+            </div>
+            <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${showDataManagement ? 'rotate-180' : ''}`} />
+          </button>
+          {showDataManagement && (
+            <div className="px-4 sm:px-5 py-4 space-y-4 bg-card/40">
+              <div className="space-y-3">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-semibold">Export Data</h3>
+                    <p className="text-xs text-muted-foreground">Download a backup of all your data</p>
+                  </div>
+                  <Button size="sm" variant="outline" onClick={exportData} className="shrink-0">Export</Button>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-semibold">Import Data</h3>
+                    <p className="text-xs text-muted-foreground">Restore data from a backup file</p>
+                  </div>
+                  <Button size="sm" variant="outline" onClick={handleImportClick} className="shrink-0">Import</Button>
+                </div>
+                <div className="space-y-2 border-t pt-3">
+                  <h3 className="text-sm font-semibold">Predefined Datasets</h3>
+                  <p className="text-xs text-muted-foreground">Quickly load a sample dataset (replaces current data).</p>
+                  <div className="flex flex-wrap gap-2">
+                    {predefinedDatasets.map(ds => (
+                      <Button key={ds.id} size="sm" variant="outline" onClick={() => applyPredefined(ds.path)}>{ds.label}</Button>
+                    ))}
+                  </div>
+                  <p className="text-xs text-muted-foreground">If missing class data contact developer on <a href="https://wa.me/919951970441?text=I%20Dont%20find%20my%20class%20data" className="text-primary hover:underline">WhatsApp</a>.</p>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-t pt-3">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-semibold text-destructive">Clear All Data</h3>
+                    <p className="text-xs text-muted-foreground">Permanently delete all saved data</p>
+                  </div>
+                  <Button size="sm" variant="outline" onClick={clearAllData} className="shrink-0 text-destructive hover:bg-destructive hover:text-destructive-foreground">Clear</Button>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+            
+          )}
+          {/* App Information collapsible */}
+          <button
+            className="w-full flex items-center justify-between px-4 sm:px-5 py-4 hover:bg-card/50"
+            onClick={() => setShowAppInfo(v => !v)}
+          >
+            <div className="flex items-center gap-3">
+              <Info className="h-5 w-5 text-muted-foreground" />
+              <span className="text-sm sm:text-base">App Information</span>
+            </div>
+            <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${showAppInfo ? 'rotate-180' : ''}`} />
+          </button>
+          {showAppInfo && (
+            <div className="px-4 sm:px-5 py-4 space-y-4 bg-card/40">
+              <div className="relative overflow-hidden p-4 rounded-lg bg-card/50 backdrop-blur-xl border border-border/40 shadow-sm">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/10 pointer-events-none" />
+                <div className="relative space-y-2 text-center">
+                  <h3 className="text-base font-semibold tracking-tight">BunkMaar</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                    A simple and efficient way to track your class attendance and maintain academic records.
+                  </p>
+                </div>
+              </div>
+              <div className="p-3 rounded-lg border border-border/50 bg-background/40 space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span>Total Subjects</span><span className="font-medium">{subjects.length}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span>Attendance Records</span><span className="font-medium">{attendanceRecords.length}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span>Version</span><span className="font-medium">1.3</span>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </Card>
 
-  {/* Data Management */}
-      <Card className="p-4 sm:p-6 bg-gradient-to-br from-primary/5 to-background">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <SettingsIcon className="h-6 w-6 text-primary" />
-            <h2 className="text-xl font-semibold">Data Management</h2>
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowDataManagement(!showDataManagement)}
+      {/* About & account */}
+      <Card className="p-0 overflow-hidden border-0 bg-card/40 backdrop-blur-2xl shadow-card">
+        <div className="divide-y divide-border/60">
+          {/* <button
+            className="w-full flex items-center justify-between px-4 sm:px-5 py-4 hover:bg-card/50"
+            onClick={() => setShowAppInfo(!showAppInfo)}
           >
-            {showDataManagement ? 'Hide' : 'Show'}
-          </Button>
-        </div>
-        
-        {showDataManagement && (
-          <div className="space-y-4">
-            <div className="p-4 bg-card rounded-lg border shadow-sm space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-base font-semibold text-foreground">Export Data</h3>
-                  <p className="text-sm text-muted-foreground">Download a backup of all your data</p>
-                </div>
-                <Button variant="outline" onClick={exportData} className="shrink-0 w-full sm:w-auto">
-                  <Download className="h-4 w-4 mr-2" />
-                  Export
-                </Button>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-base font-semibold text-foreground">Import Data</h3>
-                  <p className="text-sm text-muted-foreground">Restore data from a backup file</p>
-                </div>
-                <Button variant="outline" onClick={handleImportClick} className="shrink-0 w-full sm:w-auto">
-                  <Upload className="h-4 w-4 mr-2" />
-                  Import
-                </Button>
-              </div>
-
-              <div className="pt-4 border-t">
-                <h3 className="text-base font-semibold mb-3">Predefined Datasets</h3>
-                <p className="text-sm text-muted-foreground mb-3">Quickly load a sample dataset (this will replace current data).</p>
-                <div className="flex flex-wrap gap-2">
-                  {predefinedDatasets.map(ds => (
-                    <Button key={ds.id} variant="outline" onClick={() => applyPredefined(ds.path)}>
-                      {ds.label}
-                    </Button>
-                  ))}
-                </div>
-                <h2 className="text-base font-semibold mb-3">If you don't find your class DATA please contact the developer <br /> <a href="https://wa.me/919951970441?text=I%20Dont%20find%20my%20class%20data" className="text-primary hover:underline" style={{ textAlign: 'center' ,justifyContent: 'center', display: 'flex'}}>whatsapp</a> </h2>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 pt-2 border-t">
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-base font-semibold text-destructive">Clear All Data</h3>
-                  <p className="text-sm text-muted-foreground">Permanently delete all subjects, timetables, and attendance records</p>
-                </div>
-                <Button variant="outline" onClick={clearAllData} className="shrink-0 w-full sm:w-auto text-destructive hover:bg-destructive hover:text-destructive-foreground">
-                  <Trash2 className="h-4 w-4 mr-2" />
-                  Clear
-                </Button>
-              </div>
+            <div className="flex items-center gap-3">
+              <Info className="h-5 w-5 text-muted-foreground" />
+              <span className="text-sm sm:text-base">About application</span>
             </div>
-          </div>
-        )}
+            <ChevronRight className="h-4 w-4 text-muted-foreground" />
+          </button> */}
+
+
+
+          <button
+            className="w-full flex items-center justify-between px-4 sm:px-5 py-4 hover:bg-card/50"
+            onClick={() => navigate('/timetable')}
+          >
+            <div className="flex items-center gap-3">
+              <Clock className="h-5 w-5 text-muted-foreground" />
+              <span className="text-sm sm:text-base">Timetable</span>
+            </div>
+            <ChevronRight className="h-4 w-4 text-muted-foreground" />
+          </button>
+
+          <button
+            className="w-full flex items-center justify-between px-4 sm:px-5 py-4 hover:bg-card/50"
+            onClick={() => navigate('/subjects')}
+          >
+            <div className="flex items-center gap-3">
+              <BookOpen className="h-5 w-5 text-muted-foreground" />
+              <span className="text-sm sm:text-base">Subjects</span>
+            </div>
+            <ChevronRight className="h-4 w-4 text-muted-foreground" />
+          </button>
+
+          
+
+          <button
+            className="w-full flex items-center justify-between px-4 sm:px-5 py-4 hover:bg-card/50"
+            onClick={() => {
+              const msg = 'hello sameer i have a problem';
+              const url = `https://wa.me/919951970441?text=${encodeURIComponent(msg)}`;
+              window.open(url, '_blank', 'noopener,noreferrer');
+            }}
+          >
+            <div className="flex items-center gap-3">
+              <span className="inline-flex h-5 w-5 items-center justify-center rounded-md bg-muted/50 text-muted-foreground">?</span>
+              <span className="text-sm sm:text-base">Help/FAQ</span>
+            </div>
+            <ChevronRight className="h-4 w-4 text-muted-foreground" />
+          </button>
+          <button
+            className="w-full flex items-center justify-between px-4 sm:px-5 py-4 hover:bg-card/50"
+            onClick={onSignOut}
+          >
+            <div className="flex items-center gap-3">
+              <LogOut className="h-5 w-5 text-muted-foreground" />
+              <span className="text-sm sm:text-base text-destructive">Sign out</span>
+            </div>
+            <ChevronRight className="h-4 w-4 text-muted-foreground" />
+          </button>
+        </div>
       </Card>
 
       {/* Cloud Backup removed: using local export/import only */}
@@ -387,7 +445,7 @@ export default function Settings() {
       />
 
       {/* Contact Information */}
-      <Card className="bg-gradient-card shadow-card border-0 p-4 sm:p-6">
+      <Card className="p-0 overflow-hidden border-0 bg-card/40 backdrop-blur-2xl shadow-card p-4 sm:p-6">
         <div className="flex items-center mb-4">
           <Info className="h-5 w-5 text-primary mr-2" />
           <h2 className="text-lg font-semibold text-foreground">Contact Developer</h2>
@@ -414,13 +472,7 @@ export default function Settings() {
         </div>
       </Card>
 
-      {/* About */}
-      <Card className="bg-gradient-card shadow-card border-0 p-4 sm:p-6 text-center">
-        <h3 className="text-lg font-semibold text-foreground mb-2">BunkMaar</h3>
-        <p className="text-muted-foreground text-sm">
-          A simple and efficient way to track your class attendance and maintain academic records.
-        </p>
-      </Card>
+      {/* Standalone About card removed (merged into App Information) */}
     </div>
   );
 }

@@ -1,62 +1,39 @@
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Navigation } from './Navigation';
 import { AttendanceStats } from './AttendanceStats';
 import { PwaBanner } from './PwaBanner';
 import { InstallPrompt } from './InstallPrompt';
-import { signOut } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
-import { toast } from '@/components/ui/sonner';
-import { useAuthState } from '@/hooks/useAuth';
-import { Button } from '@/components/ui/button';
 
 export const Layout = () => {
   const location = useLocation();
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location.pathname]);
+  
   return (
-    <div className="min-h-screen bg-gradient-background">
-      {/* Enhanced responsive container with better mobile padding */}
-      <div className="container mx-auto px-2 xs:px-3 sm:px-4 md:px-6 py-3 xs:py-4 sm:py-6 max-w-7xl">
-        <div className="flex items-center justify-end mb-2">
-          <AuthMenu />
-        </div>
-        {/* Theme toggle moved into Attendance Overview */}
+    <div className="min-h-screen relative overflow-hidden">
+      {/* iOS-style mesh gradient background */}
+      <div className="fixed inset-0 bg-gradient-mesh opacity-40 dark:opacity-30 pointer-events-none" />
+      <div className="fixed inset-0 bg-gradient-background pointer-events-none" />
+      
+      {/* Glassmorphic content container */}
+      <div className="relative z-10 container mx-auto px-4 xs:px-5 sm:px-6 md:px-8 py-4 xs:py-5 sm:py-6 max-w-7xl">
+        {/* Header auth menu removed: Sign out now only in Settings */}
+        
+        {/* Attendance overview card */}
         <AttendanceStats />
-        {/* Enhanced spacing for mobile and safe areas */}
-        <main className="mt-3 xs:mt-4 sm:mt-6 pb-20 xs:pb-22 sm:pb-24 md:pb-28 supports-[safe-area-inset-bottom]:pb-[calc(5rem+env(safe-area-inset-bottom))]">
+        
+        {/* Main content area with premium spacing */}
+        <main className="mt-4 xs:mt-5 sm:mt-6 pb-24 xs:pb-26 sm:pb-28 md:pb-32 supports-[safe-area-inset-bottom]:pb-[calc(6rem+env(safe-area-inset-bottom))]">
           <Outlet />
         </main>
+        
+        {/* Navigation and PWA components */}
         <Navigation />
         <PwaBanner />
         <InstallPrompt />
       </div>
-    </div>
-  );
-};
-
-const AuthMenu = () => {
-  const { user, loading } = useAuthState();
-  const navigate = useNavigate();
-
-  const onSignOut = async () => {
-    try {
-      await signOut(auth);
-      toast.success('Signed out');
-      navigate('/login', { replace: true });
-    } catch (err: any) {
-      toast.error(err?.message || 'Failed to sign out');
-    }
-  };
-
-  if (loading) return null;
-  if (!user) return null;
-
-  return (
-    <div className="flex items-center gap-3">
-      <div className="text-sm text-muted-foreground">{user.email}</div>
-      <Button variant="ghost" onClick={onSignOut}>Sign out</Button>
     </div>
   );
 };

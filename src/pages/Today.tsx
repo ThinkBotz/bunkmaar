@@ -51,20 +51,43 @@ export default function Today() {
     toast.success(`All classes ${statusText} for today!`);
   };
 
-  const getStatusColor = (status?: string) => {
+  const getStatusStyles = (status?: string) => {
     switch (status) {
-      case 'present': return 'bg-success text-success-foreground';
-      case 'absent': return 'bg-warning text-warning-foreground';
-      case 'cancelled': return 'bg-neutral text-neutral-foreground';
-      default: return 'bg-muted text-muted-foreground';
+      case 'present': 
+        return {
+          bg: 'bg-success/10 dark:bg-success/15',
+          border: 'border-success/30',
+          text: 'text-success',
+        };
+      case 'absent': 
+        return {
+          bg: 'bg-warning/10 dark:bg-warning/15',
+          border: 'border-warning/30',
+          text: 'text-warning',
+        };
+      case 'cancelled': 
+        return {
+          bg: 'bg-neutral/10 dark:bg-neutral/15',
+          border: 'border-neutral/30',
+          text: 'text-neutral',
+        };
+      default: 
+        return {
+          bg: '',
+          border: '',
+          text: '',
+        };
     }
   };
 
   return (
-    <div className="space-y-4 xs:space-y-6 pb-20 xs:pb-24">
-      <div className="text-center">
-        <h1 className="text-xl xs:text-2xl sm:text-3xl font-bold text-foreground mb-2">Today's Schedule</h1>
-        <p className="text-sm xs:text-base text-muted-foreground">
+    <div className="space-y-5 xs:space-y-6 pb-24 xs:pb-28">
+      {/* Header section with iOS-style hierarchy */}
+      <div className="text-center space-y-2">
+        <h1 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-foreground tracking-tight">
+          Today's Schedule
+        </h1>
+        <p className="text-sm xs:text-base text-muted-foreground font-medium">
           {new Date().toLocaleDateString('en-US', { 
             weekday: 'long', 
             year: 'numeric', 
@@ -75,129 +98,189 @@ export default function Today() {
       </div>
 
       {todaySchedule.length === 0 ? (
-        <Card className="bg-gradient-card shadow-card border-0 p-6 xs:p-8 text-center">
-          <Clock className="h-10 w-10 xs:h-12 xs:w-12 text-muted-foreground mx-auto mb-3 xs:mb-4" />
-          <h3 className="text-base xs:text-lg font-semibold text-foreground mb-2">No Classes Today</h3>
-          <p className="text-sm xs:text-base text-muted-foreground">Enjoy your free day!</p>
+        /* Empty state with glassmorphic card */
+        <Card className="relative overflow-hidden border-0 bg-card/40 dark:bg-card/30 backdrop-blur-2xl backdrop-saturate-180 shadow-card">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 pointer-events-none" />
+          <div className="relative p-8 xs:p-10 sm:p-12 text-center space-y-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 xs:w-20 xs:h-20 rounded-3xl bg-primary/10 dark:bg-primary/15">
+              <Clock className="h-8 w-8 xs:h-10 xs:w-10 text-primary" />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-lg xs:text-xl font-semibold text-foreground">No Classes Today</h3>
+              <p className="text-sm xs:text-base text-muted-foreground">Enjoy your free day!</p>
+            </div>
+          </div>
         </Card>
       ) : (
         <>
-          <Card className="bg-gradient-card shadow-card border-0 p-3 xs:p-4">
-            <h3 className="text-base xs:text-lg font-semibold text-foreground mb-3">Quick Actions</h3>
-            {/* Compact quick actions with icons only */}
-            <div className="flex items-center justify-center gap-2">
-              <Button
-                onClick={() => handleBulkAttendance('present')}
-                size="icon"
-                aria-label="All Present"
-                title="Mark All Present"
-                className="bg-success hover:bg-success/90 text-success-foreground w-10 h-10 min-h-[40px] touch-manipulation"
-              >
-                <CheckCheck className="h-4 w-4" />
-              </Button>
-              <Button
-                onClick={() => handleBulkAttendance('absent')}
-                size="icon"
-                aria-label="All Absent"
-                title="Mark All Absent"
-                className="bg-warning hover:bg-warning/90 text-warning-foreground w-10 h-10 min-h-[40px] touch-manipulation"
-              >
-                <XCircle className="h-4 w-4" />
-              </Button>
-              <Button
-                onClick={() => handleBulkAttendance('cancelled')}
-                size="icon"
-                aria-label="All Off"
-                title="Mark All Off"
-                className="bg-neutral hover:bg-neutral/90 text-neutral-foreground w-10 h-10 min-h-[40px] touch-manipulation"
-              >
-                <Power className="h-4 w-4" />
-              </Button>
-              <Button
-                onClick={() => handleBulkAttendance('clear')}
-                variant="outline"
-                size="icon"
-                aria-label="Clear All"
-                title="Clear All"
-                className="border-muted-foreground text-muted-foreground hover:bg-muted w-10 h-10 min-h-[40px] touch-manipulation"
-              >
-                <Eraser className="h-4 w-4" />
-              </Button>
+          {/* Quick actions card */}
+          <Card className="relative overflow-hidden border-0 bg-card/40 dark:bg-card/30 backdrop-blur-2xl backdrop-saturate-180 shadow-card hover:shadow-elevated transition-all duration-300 ease-smooth">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 pointer-events-none" />
+            <div className="relative p-4 xs:p-5 space-y-3">
+              <h3 className="text-base xs:text-lg font-semibold text-foreground">Quick Actions</h3>
+              
+              {/* iOS-style action buttons grid */}
+              <div className="grid grid-cols-4 gap-2 xs:gap-3">
+                <Button
+                  onClick={() => handleBulkAttendance('present')}
+                  className={cn(
+                    "flex flex-col items-center gap-2 h-auto py-3 xs:py-4 px-2",
+                    "bg-success/15 hover:bg-success/25 dark:bg-success/20 dark:hover:bg-success/30",
+                    "text-success border-0 shadow-lg",
+                    "transition-all duration-300 ease-bounce active:scale-95",
+                    "rounded-2xl"
+                  )}
+                >
+                  <CheckCheck className="h-5 w-5 xs:h-6 xs:w-6" />
+                  <span className="text-[10px] xs:text-xs font-medium">All Present</span>
+                </Button>
+                
+                <Button
+                  onClick={() => handleBulkAttendance('absent')}
+                  className={cn(
+                    "flex flex-col items-center gap-2 h-auto py-3 xs:py-4 px-2",
+                    "bg-warning/15 hover:bg-warning/25 dark:bg-warning/20 dark:hover:bg-warning/30",
+                    "text-warning border-0 shadow-lg",
+                    "transition-all duration-300 ease-bounce active:scale-95",
+                    "rounded-2xl"
+                  )}
+                >
+                  <XCircle className="h-5 w-5 xs:h-6 xs:w-6" />
+                  <span className="text-[10px] xs:text-xs font-medium">All Absent</span>
+                </Button>
+                
+                <Button
+                  onClick={() => handleBulkAttendance('cancelled')}
+                  className={cn(
+                    "flex flex-col items-center gap-2 h-auto py-3 xs:py-4 px-2",
+                    "bg-neutral/15 hover:bg-neutral/25 dark:bg-neutral/20 dark:hover:bg-neutral/30",
+                    "text-neutral border-0 shadow-lg",
+                    "transition-all duration-300 ease-bounce active:scale-95",
+                    "rounded-2xl"
+                  )}
+                >
+                  <Power className="h-5 w-5 xs:h-6 xs:w-6" />
+                  <span className="text-[10px] xs:text-xs font-medium">All Off</span>
+                </Button>
+                
+                <Button
+                  onClick={() => handleBulkAttendance('clear')}
+                  className={cn(
+                    "flex flex-col items-center gap-2 h-auto py-3 xs:py-4 px-2",
+                    "bg-muted/50 hover:bg-muted dark:bg-muted/30 dark:hover:bg-muted/50",
+                    "text-muted-foreground border-0 shadow-lg",
+                    "transition-all duration-300 ease-bounce active:scale-95",
+                    "rounded-2xl"
+                  )}
+                >
+                  <Eraser className="h-5 w-5 xs:h-6 xs:w-6" />
+                  <span className="text-[10px] xs:text-xs font-medium">Clear</span>
+                </Button>
+              </div>
             </div>
           </Card>
 
+          {/* Class cards with floating design */}
           <div className="space-y-3 xs:space-y-4">
             {todaySchedule.map((slot) => {
             const status = getAttendanceStatus(slot.id);
             const subjectName = getSubjectName(slot.subjectId);
+            const statusStyles = getStatusStyles(status);
             
             return (
               <Card 
                 key={slot.id} 
-                className="bg-gradient-card shadow-card border-0 p-3 hover:shadow-hover transition-all duration-200"
+                className={cn(
+                  "relative overflow-hidden group",
+                  "border-0 backdrop-blur-2xl backdrop-saturate-180",
+                  "shadow-card hover:shadow-elevated",
+                  "transition-all duration-300 ease-smooth",
+                  "hover:scale-[1.01] active:scale-[0.99]",
+                  status ? statusStyles.bg : "bg-card/40 dark:bg-card/30"
+                )}
               >
-                {/* Compact layout for class cards */}
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-base font-semibold text-foreground truncate">{subjectName}</h3>
-                      {/* Status indicator */}
-                      {status && (
-                        <span className={cn("inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium", getStatusColor(status))}>
-                          {status.charAt(0).toUpperCase() + status.slice(1)}
-                        </span>
-                      )}
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 pointer-events-none" />
+                
+                {/* Status indicator bar */}
+                {status && (
+                  <div className={cn("absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl", statusStyles.border)} />
+                )}
+                
+                <div className="relative p-4 xs:p-5">
+                  <div className="flex items-center justify-between gap-3">
+                    {/* Subject info */}
+                    <div className="flex-1 min-w-0 space-y-1">
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-base xs:text-lg font-semibold text-foreground truncate">
+                          {subjectName}
+                        </h3>
+                        {status && (
+                          <span className={cn(
+                            "inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium backdrop-blur-xl",
+                            statusStyles.bg,
+                            statusStyles.text
+                          )}>
+                            {status.charAt(0).toUpperCase() + status.slice(1)}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs xs:text-sm text-muted-foreground font-medium">
+                        {slot.startTime} - {slot.endTime}
+                      </p>
                     </div>
-                    <p className="text-xs text-muted-foreground">
-                      {slot.startTime} - {slot.endTime}
-                    </p>
-                  </div>
-                  
-                  {/* Ultra compact icon-only buttons */}
-                  <div className="flex items-center gap-0.5">
+                    
+                    {/* Action buttons with iOS-style design */}
                     {slot.subjectId && (
-                      <>
+                      <div className="flex items-center gap-1 xs:gap-1.5">
                         <Button
                           variant={status === 'present' ? 'default' : 'outline'}
                           size="sm"
                           onClick={() => handleAttendance(slot.id, slot.subjectId, 'present')}
-                          aria-label="Mark present"
-                          title="Present"
-                          className="w-8 h-8 p-0 min-h-[32px] touch-manipulation"
+                          className={cn(
+                            "w-9 h-9 xs:w-10 xs:h-10 p-0 rounded-xl",
+                            "transition-all duration-200 ease-smooth active:scale-90",
+                            status === 'present' && "bg-success hover:bg-success/90 border-success shadow-lg"
+                          )}
                         >
-                          <Check className="h-3.5 w-3.5" />
+                          <Check className="h-4 w-4" />
                         </Button>
+                        
                         <Button
                           variant={status === 'absent' ? 'destructive' : 'outline'}
                           size="sm"
                           onClick={() => handleAttendance(slot.id, slot.subjectId, 'absent')}
-                          aria-label="Mark absent"
-                          title="Absent"
-                          className="w-8 h-8 p-0 min-h-[32px] touch-manipulation"
+                          className={cn(
+                            "w-9 h-9 xs:w-10 xs:h-10 p-0 rounded-xl",
+                            "transition-all duration-200 ease-smooth active:scale-90",
+                            status === 'absent' && "bg-warning hover:bg-warning/90 border-warning shadow-lg"
+                          )}
                         >
-                          <X className="h-3.5 w-3.5" />
+                          <X className="h-4 w-4" />
                         </Button>
+                        
                         <Button
                           variant={status === 'cancelled' ? 'secondary' : 'outline'}
                           size="sm"
                           onClick={() => handleAttendance(slot.id, slot.subjectId, 'cancelled')}
-                          aria-label="Mark cancelled"
-                          title="Cancelled"
-                          className="w-8 h-8 p-0 min-h-[32px] touch-manipulation"
+                          className={cn(
+                            "w-9 h-9 xs:w-10 xs:h-10 p-0 rounded-xl",
+                            "transition-all duration-200 ease-smooth active:scale-90",
+                            status === 'cancelled' && "bg-neutral hover:bg-neutral/90 border-neutral shadow-lg"
+                          )}
                         >
-                          <Ban className="h-3.5 w-3.5" />
+                          <Ban className="h-4 w-4" />
                         </Button>
+                        
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => handleClear(slot.id)}
-                          aria-label="Clear status"
-                          title="Clear"
-                          className="w-8 h-8 p-0 min-h-[32px] touch-manipulation"
+                          className="w-9 h-9 xs:w-10 xs:h-10 p-0 rounded-xl transition-all duration-200 ease-smooth active:scale-90"
                         >
-                          <RotateCcw className="h-3.5 w-3.5" />
+                          <RotateCcw className="h-4 w-4" />
                         </Button>
-                      </>
+                      </div>
                     )}
                   </div>
                 </div>

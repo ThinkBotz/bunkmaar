@@ -2,18 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Student Dashboard Design System - Modern, Clean, Encouraging */
+/* ═══════════════════════════════════════════════════════════════
+   iOS 17 / visionOS Design System
+   Apple-inspired glassmorphism, materials, and vibrancy
+   ═══════════════════════════════════════════════════════════════ */
 
-/* PWA Mobile Optimizations */
+/* ─────────────────────────────────────────────────────────────── 
+   PWA Mobile Optimizations
+   ─────────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
-  /* Improve touch interactions */
   button, [role="button"], input[type="button"], input[type="submit"] {
     min-height: 44px;
     min-width: 44px;
     touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
   
-  /* Prevent zoom on input focus */
   input[type="text"], 
   input[type="number"], 
   input[type="email"], 
@@ -24,13 +28,14 @@
     font-size: 16px;
   }
   
-  /* Better scrolling on mobile */
   * {
     -webkit-overflow-scrolling: touch;
   }
 }
 
-/* PWA Safe Area Support */
+/* ─────────────────────────────────────────────────────────────── 
+   Safe Area & iOS Insets
+   ─────────────────────────────────────────────────────────────── */
 @supports (padding: env(safe-area-inset-top)) {
   .safe-top { padding-top: env(safe-area-inset-top); }
   .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
@@ -38,146 +43,214 @@
   .safe-right { padding-right: env(safe-area-inset-right); }
 }
 
-/* Prevent text selection on interactive elements */
 button, [role="button"], .no-select {
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
-/* Better focus visibility for keyboard navigation */
 @media (prefers-reduced-motion: no-preference) {
   :focus-visible {
     outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
-    border-radius: 4px;
+    outline-offset: 3px;
+    border-radius: 12px;
+    transition: outline-offset 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   iOS Design Tokens: Colors, Materials, Effects
+   ═══════════════════════════════════════════════════════════════ */
 @layer base {
   :root {
-    --background: 220 20% 98%;
-    --foreground: 224 60% 6%;
-
+    /* ─── Background System ─── */
+    /* Light mode uses soft gradients with subtle color tinting */
+    --background: 220 25% 97%;
+    --foreground: 224 80% 8%;
+    
+    /* ─── Material Layers (Glassmorphic Cards) ─── */
     --card: 0 0% 100%;
-    --card-foreground: 224 71% 4%;
-
+    --card-foreground: 224 75% 10%;
+    --card-glass: 220 40% 99%;
+    
+    /* ─── Popover & Elevated Surfaces ─── */
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71% 4%;
+    --popover-foreground: 224 75% 10%;
 
-  --primary: 222 85% 55%;
+    /* ─── Primary Accent (iOS Blue) ─── */
+    --primary: 211 100% 50%;
     --primary-foreground: 0 0% 100%;
-  --primary-hover: 222 85% 48%;
+    --primary-hover: 211 100% 45%;
+    --primary-tint: 211 100% 96%;
+    
+    /* ─── Secondary & Muted Tones ─── */
+    --secondary: 220 16% 96%;
+    --secondary-foreground: 220 15% 20%;
+    --muted: 220 18% 95%;
+    --muted-foreground: 220 10% 42%;
+    
+    /* ─── Accent Colors ─── */
+    --accent: 220 16% 96%;
+    --accent-foreground: 220 15% 20%;
 
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
-
-  --muted: 220 15% 95%;
-  --muted-foreground: 220 9% 35%;
-
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
-
-  --success: 142 72% 34%;
+    /* ─── Status Colors (iOS Semantic) ─── */
+    --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
-    --success-light: 142 76% 96%;
+    --success-light: 142 76% 95%;
+    --success-tint: 142 76% 97%;
 
-  --warning: 20 90% 52%;
+    --warning: 32 95% 50%;
     --warning-foreground: 0 0% 100%;
-  --warning-light: 20 93% 92%;
+    --warning-light: 32 95% 94%;
+    --warning-tint: 32 95% 97%;
 
-  --neutral: 220 10% 50%;
+    --neutral: 220 12% 50%;
     --neutral-foreground: 0 0% 100%;
-  --neutral-light: 220 18% 96%;
+    --neutral-light: 220 15% 94%;
+    --neutral-tint: 220 15% 97%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 90% 51%;
     --destructive-foreground: 0 0% 100%;
+    --destructive-light: 0 90% 95%;
+    --destructive-tint: 0 90% 97%;
+    
+    /* ─── Borders & Inputs ─── */
+    --border: 220 15% 88%;
+    --input: 220 15% 91%;
+    --ring: 211 100% 50%;
+    
+    /* ─── Border Radius (iOS-style rounded) ─── */
+    --radius: 1rem;
+    --radius-lg: 1.25rem;
+    --radius-xl: 1.5rem;
+    
+    /* ─── Mesh Gradients & Backgrounds ─── */
+    --gradient-primary: linear-gradient(135deg, hsl(211 100% 50%) 0%, hsl(221 100% 60%) 100%);
+    --gradient-mesh: radial-gradient(at 0% 0%, hsl(211 100% 96%) 0px, transparent 50%),
+                     radial-gradient(at 100% 0%, hsl(221 100% 96%) 0px, transparent 50%),
+                     radial-gradient(at 100% 100%, hsl(211 80% 97%) 0px, transparent 50%),
+                     radial-gradient(at 0% 100%, hsl(142 76% 97%) 0px, transparent 50%);
+    /* Warm peach background for light mode: #fff1e6 with soft gradient */
+    --gradient-background: linear-gradient(120deg, #fff1e6 0%, #fef8f3 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.9), hsl(220 40% 99% / 0.85));
+    
+    /* ─── iOS-style Shadows (Soft & Layered) ─── */
+    --shadow-sm: 0 1px 2px 0 hsl(220 15% 15% / 0.04),
+                 0 1px 3px 0 hsl(220 15% 15% / 0.03);
+    --shadow-card: 0 2px 8px -2px hsl(220 15% 15% / 0.06),
+                   0 4px 16px -4px hsl(220 15% 15% / 0.04),
+                   0 0 0 1px hsl(220 15% 88% / 0.4);
+    --shadow-hover: 0 4px 16px -2px hsl(220 15% 15% / 0.08),
+                    0 8px 32px -4px hsl(220 15% 15% / 0.06),
+                    0 0 0 1px hsl(220 15% 88% / 0.5);
+    --shadow-elevated: 0 8px 24px -4px hsl(220 15% 15% / 0.1),
+                       0 16px 48px -8px hsl(220 15% 15% / 0.08),
+                       0 0 0 1px hsl(220 15% 88% / 0.6);
+    
+    /* ─── Glassmorphism Effects ─── */
+    --glass-blur: blur(20px);
+    --glass-tint: hsl(0 0% 100% / 0.7);
+    --glass-border: hsl(0 0% 100% / 0.8);
+    
+    /* ─── Smooth iOS Transitions ─── */
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-smooth: all 0.3s var(--ease-smooth);
+    --transition-fast: all 0.15s var(--ease-smooth);
 
-  --border: 220 13% 91%;
-  --input: 220 13% 91%;
-  --ring: 222 85% 55%;
-  --card-border: 220 14% 92%;
-  --section-border: 220 15% 93%;
-
-    --radius: 0.75rem;
-
-    /* Gradients */
-  --gradient-primary: linear-gradient(135deg, hsl(222 85% 55%), hsl(213 94% 68%));
-  --gradient-background: linear-gradient(180deg, hsl(220 20% 98%), hsl(220 15% 96%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 20% 98%));
-
-    /* Shadows */
-    --shadow-card: 0 4px 20px -2px hsl(262 83% 58% / 0.1);
-    --shadow-hover: 0 8px 30px -2px hsl(262 83% 58% / 0.15);
-
-    /* Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
+    /* ─── Sidebar/Menu System ─── */
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 211 100% 50%;
   }
 
+  /* ═══════════════════════════════════════════════════════════════
+     Dark Mode: Deep blacks with vibrancy
+     ═══════════════════════════════════════════════════════════════ */
   .dark {
-    --background: 0 0% 0%;
+    --background: 240 35% 6%;
     --foreground: 210 40% 98%;
 
-    --card: 0 0% 2%;
+    --card: 230 25% 12%;
     --card-foreground: 210 40% 98%;
+    --card-glass: 220 15% 10%;
 
-    --popover: 0 0% 2%;
+    --popover: 220 15% 9%;
     --popover-foreground: 210 40% 98%;
 
-  /* Brand accents tuned for dark */
-  --primary: 222 85% 60%;
-  --primary-foreground: 0 0% 100%;
+    --primary: 211 100% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 211 100% 50%;
+    --primary-tint: 211 70% 15%;
 
-  --secondary: 220 24% 18%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 220 15% 14%;
+    --secondary-foreground: 210 40% 95%;
 
-  --muted: 220 24% 16%;
-  --muted-foreground: 215 18% 70%;
+    --muted: 220 15% 12%;
+    --muted-foreground: 215 15% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 220 15% 14%;
+    --accent-foreground: 210 40% 95%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --success: 142 70% 45%;
+    --success-tint: 142 50% 15%;
+    
+    --warning: 32 90% 55%;
+    --warning-tint: 32 60% 15%;
+    
+    --neutral: 220 10% 55%;
+    --neutral-tint: 220 10% 15%;
 
-    --border: 215 25% 27%;
-    --input: 215 25% 27%;
-    --card-border: 215 28% 25%;
-    --section-border: 215 30% 23%;
-    --ring: 222 90% 60%;
+    --destructive: 0 80% 55%;
+    --destructive-tint: 0 60% 15%;
 
-    /* Dark gradients for backgrounds and cards */
-    --gradient-background: linear-gradient(180deg, hsl(0 0% 0%), hsl(0 0% 2%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 3%), hsl(0 0% 1%));
-    --gradient-primary: linear-gradient(135deg, hsl(222 85% 60%), hsl(210 90% 56%));
-    --sidebar-background: 240 5.9% 10%;
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 211 100% 55%;
+
+    /* Rich colored background for dark mode: indigo → slate → sky */
+    --gradient-background: radial-gradient(1200px 800px at 0% 0%, hsl(232 50% 12% / 1) 0%, transparent 55%),
+                 radial-gradient(1200px 800px at 100% 0%, hsl(220 60% 13% / 1) 0%, transparent 55%),
+                 linear-gradient(135deg, hsl(232 35% 9%) 0%, hsl(220 30% 8%) 50%, hsl(205 35% 10%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 15% 10% / 0.9), hsl(220 15% 8% / 0.85));
+    --gradient-mesh: radial-gradient(at 0% 0%, hsl(211 80% 12%) 0px, transparent 50%),
+                     radial-gradient(at 100% 0%, hsl(221 70% 12%) 0px, transparent 50%),
+                     radial-gradient(at 100% 100%, hsl(211 60% 10%) 0px, transparent 50%),
+                     radial-gradient(at 0% 100%, hsl(142 50% 10%) 0px, transparent 50%);
+    
+    --shadow-card: 0 2px 8px -2px hsl(0 0% 0% / 0.3),
+                   0 4px 16px -4px hsl(0 0% 0% / 0.2),
+                   0 0 0 1px hsl(220 15% 18% / 0.5);
+    --shadow-hover: 0 4px 16px -2px hsl(0 0% 0% / 0.4),
+                    0 8px 32px -4px hsl(0 0% 0% / 0.3),
+                    0 0 0 1px hsl(220 15% 20% / 0.6);
+    --shadow-elevated: 0 8px 24px -4px hsl(0 0% 0% / 0.5),
+                       0 16px 48px -8px hsl(0 0% 0% / 0.4),
+                       0 0 0 1px hsl(220 15% 22% / 0.7);
+    
+    --glass-blur: blur(24px);
+    --glass-tint: hsl(220 15% 10% / 0.7);
+    --glass-border: hsl(220 15% 25% / 0.5);
+
+    --sidebar-background: 220 15% 8%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary: 211 100% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent: 220 15% 12%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 211 100% 55%;
   }
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   Base Styles: Typography & Body
+   ═══════════════════════════════════════════════════════════════ */
 @layer base {
   * {
     border-color: hsl(var(--border));
@@ -186,6 +259,14 @@ button, [role="button"], .no-select {
   body {
     background: var(--gradient-background);
     color: hsl(var(--foreground));
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* iOS-style smooth scrolling */
+  html {
+    scroll-behavior: smooth;
   }
 }
