@@ -467,6 +467,8 @@ export default function Settings() {
             <div className="flex items-center gap-2">
               <Instagram className="h-4 w-4 text-muted-foreground" />
               <a href="https://instagram.com/_samxiao" target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">@_samxiao</a>
+  <a href="https://instagram.com/sibgath_yt" target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">@sibgath_yt</a>
+              
             </div>
           </div>
         </div>
