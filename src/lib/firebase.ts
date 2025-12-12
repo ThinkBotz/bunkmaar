@@ -1,6 +1,7 @@
 import { initializeApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getAnalytics, isSupported as analyticsIsSupported } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
 
 // Prefer using Vite env vars, but fall back to a hard-coded config when env vars are not provided.
 // If you prefer not to commit keys into source, set the `VITE_FIREBASE_*` vars instead.
@@ -39,3 +40,4 @@ if (typeof window !== "undefined") {
 
 export { app, analytics };
 export const auth = getAuth(app);
+export const db = getFirestore(app);

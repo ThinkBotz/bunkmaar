@@ -9,6 +9,7 @@ import { Layout } from "./components/Layout";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { RequireAuth } from "./hooks/useAuth";
+import { useFirestoreSync } from "./hooks/useFirestoreSync";
 
 // Lazy load pages for code splitting
 const Today = lazy(() => import("./pages/Today"));
@@ -33,17 +34,16 @@ const PageLoader = () => (
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/" element={<Layout />}>
+function AppContent() {
+  // Enable Firestore sync for authenticated users
+  useFirestoreSync();
+  
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Layout />}>
               <Route index element={
                 <RequireAuth>
                   <Suspense fallback={<PageLoader />}>
@@ -94,6 +94,16 @@ const App = () => (
             } />
           </Routes>
         </BrowserRouter>
+  );
+}
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <AppContent />
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>

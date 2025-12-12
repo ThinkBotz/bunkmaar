@@ -1,6 +1,6 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Settings as SettingsIcon, Info, User, Phone, Mail, Instagram, BookOpen, Clock, LogOut, ChevronRight, ChevronDown } from 'lucide-react';
+import { Settings as SettingsIcon, Info, User, Phone, Mail, Instagram, BookOpen, Clock, LogOut, ChevronRight, ChevronDown, Cloud, RefreshCw } from 'lucide-react';
 import { useAppStore } from '@/store/useAppStore';
 import { toast } from 'sonner';
 import { useRef, useState } from 'react';
@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useAuthState } from '@/hooks/useAuth';
+import { saveToFirestore, loadFromFirestore } from '@/lib/firestore-sync';
 // Removed custom profile form; keeping original profile selector
 
 export default function Settings() {
@@ -294,7 +295,72 @@ export default function Settings() {
           {showDataManagement && (
             <div className="px-4 sm:px-5 py-4 space-y-4 bg-card/40">
               <div className="space-y-3">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                {user && (
+                  <>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm font-semibold flex items-center gap-2">
+                          <Cloud className="h-4 w-4" />
+                          Sync to Cloud
+                        </h3>
+                        <p className="text-xs text-muted-foreground">Save your data to Firebase</p>
+                      </div>
+                      <Button 
+                        size="sm" 
+                        variant="outline" 
+                        onClick={async () => {
+                          try {
+                            await saveToFirestore(user.uid);
+                            toast.success('✅ Synced to cloud');
+                          } catch (error) {
+                            toast.error('Failed to sync');
+                          }
+                        }} 
+                        className="shrink-0"
+                      >
+                        <Cloud className="h-4 w-4 mr-2" />
+                        Sync Now
+                      </Button>
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm font-semibold flex items-center gap-2">
+                          <RefreshCw className="h-4 w-4" />
+                          Load from Cloud
+                        </h3>
+                        <p className="text-xs text-muted-foreground">Restore your data from Firebase</p>
+                      </div>
+                      <Button 
+                        size="sm" 
+                        variant="outline" 
+                        onClick={async () => {
+                          try {
+                            const data = await loadFromFirestore(user.uid);
+                            if (data) {
+                              const state = useAppStore.getState();
+                              if (data.subjects) state.subjects = data.subjects;
+                              if (data.timetable) state.timetable = data.timetable;
+                              if (data.attendanceRecords) state.attendanceRecords = data.attendanceRecords;
+                              if (data.settings) state.settings = data.settings;
+                              if (data.profiles) state.profiles = data.profiles;
+                              if (data.activeUserId !== undefined) state.activeUserId = data.activeUserId;
+                              toast.success('✅ Loaded from cloud');
+                            } else {
+                              toast.info('No cloud data found');
+                            }
+                          } catch (error) {
+                            toast.error('Failed to load');
+                          }
+                        }} 
+                        className="shrink-0"
+                      >
+                        <RefreshCw className="h-4 w-4 mr-2" />
+                        Load Now
+                      </Button>
+                    </div>
+                  </>
+                )}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-t pt-3">
                   <div className="flex-1 min-w-0">
                     <h3 className="text-sm font-semibold">Export Data</h3>
                     <p className="text-xs text-muted-foreground">Download a backup of all your data</p>
