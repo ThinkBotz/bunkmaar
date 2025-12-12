@@ -425,7 +425,7 @@ export default function Settings() {
                   <span>Attendance Records</span><span className="font-medium">{attendanceRecords.length}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span>Version</span><span className="font-medium">1.3</span>
+                  <span>Version</span><span className="font-medium">2.1.0</span>
                 </div>
               </div>
             </div>
