@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Calendar as CalendarIcon, TrendingUp, BookOpen, Clock, CheckCircle, XCircle, Minus } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { format } from 'date-fns';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 const REQUIRED_ATTENDANCE_PERCENTAGE = 75; // You can make this configurable
 
@@ -390,45 +391,105 @@ export default function Calendar() {
              
             </Button>
             {multiMode && multi.length > 0 && (
-              <>
-                <Button size="sm" variant="outline" className="min-h-[44px] touch-manipulation" onClick={() => {
-                  const list = multi.map(d => format(d, 'yyyy-MM-dd'));
-                  bulkMarkDates(list, 'present');
-                  setMulti([]);
-                }}>
-                  <span className="text-xs xs:text-sm">Present ({multi.length})</span>
-                </Button>
-                <Button size="sm" variant="outline" className="min-h-[44px] touch-manipulation" onClick={() => {
-                  const list = multi.map(d => format(d, 'yyyy-MM-dd'));
-                  bulkMarkDates(list, 'absent');
-                  setMulti([]);
-                }}>Apply Absent</Button>
-                <Button size="sm" variant="outline" onClick={() => {
-                  const list = multi.map(d => format(d, 'yyyy-MM-dd'));
-                  list.forEach(dateString => {
-                    const dateObj = new Date(dateString);
-                    const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
-                    addHoliday(dateString);
-                    useAppStore.getState().markAllDayAttendance(dateString, dayName, 'cancelled');
-                  });
-                  setMulti([]);
-                }}>Apply Holiday</Button>
-                {/* Exam Day UI removed */}
-                <Button size="sm" variant="outline" onClick={() => {
-                  const list = multi.map(d => format(d, 'yyyy-MM-dd'));
-                  list.forEach(dateString => {
-                    const dateObj = new Date(dateString);
-                    const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
-                    // First clear attendance
-                    useAppStore.getState().markAllDayAttendance(dateString, dayName, 'clear');
-                    // Then remove holiday and exam day flags
-                    removeHoliday(dateString);
-                    removeExamDay(dateString);
-                  });
-                  setMulti([]);
-                }}>Apply Clear</Button>
-                <Button size="sm" variant="ghost" onClick={() => setMulti([])}>Clear Selection</Button>
-              </>
+              <TooltipProvider delayDuration={150}>
+                <div className="flex items-center gap-2 flex-wrap justify-center">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        size="icon"
+                        variant="outline"
+                        className="h-10 w-10 touch-manipulation relative"
+                        aria-label="Mark selected days present"
+                        title="Present"
+                        onClick={() => {
+                          const list = multi.map(d => format(d, 'yyyy-MM-dd'));
+                          bulkMarkDates(list, 'present');
+                          setMulti([]);
+                        }}
+                      >
+                        <CheckCircle className="h-4 w-4" />
+                        <Badge className="absolute -top-1 -right-1 px-1.5 py-0 text-[10px]" variant="secondary">{multi.length}</Badge>
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" align="center">Present</TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        size="icon"
+                        variant="outline"
+                        className="h-10 w-10 touch-manipulation relative"
+                        aria-label="Mark selected days absent"
+                        title="Absent"
+                        onClick={() => {
+                          const list = multi.map(d => format(d, 'yyyy-MM-dd'));
+                          bulkMarkDates(list, 'absent');
+                          setMulti([]);
+                        }}
+                      >
+                        <XCircle className="h-4 w-4" />
+                        <Badge className="absolute -top-1 -right-1 px-1.5 py-0 text-[10px]" variant="secondary">{multi.length}</Badge>
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" align="center">Absent</TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        size="icon"
+                        variant="outline"
+                        className="h-10 w-10 touch-manipulation"
+                        aria-label="Mark selected days holiday"
+                        title="Holiday"
+                        onClick={() => {
+                          const list = multi.map(d => format(d, 'yyyy-MM-dd'));
+                          list.forEach(dateString => {
+                            const dateObj = new Date(dateString);
+                            const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
+                            addHoliday(dateString);
+                            useAppStore.getState().markAllDayAttendance(dateString, dayName, 'cancelled');
+                          });
+                          setMulti([]);
+                        }}
+                      >
+                        <CalendarIcon className="h-4 w-4" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" align="center">Holiday</TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        size="icon"
+                        variant="outline"
+                        className="h-10 w-10 touch-manipulation"
+                        aria-label="Clear selected days"
+                        title="Clear"
+                        onClick={() => {
+                          const list = multi.map(d => format(d, 'yyyy-MM-dd'));
+                          list.forEach(dateString => {
+                            const dateObj = new Date(dateString);
+                            const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
+                            // First clear attendance
+                            useAppStore.getState().markAllDayAttendance(dateString, dayName, 'clear');
+                            // Then remove holiday and exam day flags
+                            removeHoliday(dateString);
+                            removeExamDay(dateString);
+                          });
+                          setMulti([]);
+                        }}
+                      >
+                        <Minus className="h-4 w-4" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" align="center">Clear</TooltipContent>
+                  </Tooltip>
+                  
+                </div>
+              </TooltipProvider>
             )}
           </div>
           {!multiMode ? (
