@@ -268,5 +268,7 @@ button, [role="button"], .no-select {
   /* iOS-style smooth scrolling */
   html {
     scroll-behavior: smooth;
+    /* Help reduce zoom gestures in PWA */
+    touch-action: pan-x pan-y;
   }
 }
