@@ -12,174 +12,117 @@ A modern, responsive web application for tracking student attendance with intell
 
 ![Attendance Tracker](https://img.shields.io/badge/Status-Active-brightgreen)
 ![React](https://img.shields.io/badge/React-18.3.1-blue)
-![TypeScript](https://img.shields.io/badge/TypeScript-Latest-blue)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-Latest-06B6D4)
+# BunkMaar
 
-## ✨ Features
+**BunkMaar** is a modern, responsive attendance tracker for students with analytics, predictions, and an easy-to-use UI. It is built with React + TypeScript, Tailwind CSS, and Vite, and ships as a PWA-ready client-side app.
 
-### 📊 **Attendance Management**
-- Track daily attendance for multiple subjects
-- Mark attendance as Present, Absent, Holiday, or Cancelled
-- Real-time attendance percentage calculation
-- Monthly average tracking
+![Status](https://img.shields.io/badge/status-active-brightgreen) ![React](https://img.shields.io/badge/react-18.x-blue) ![TypeScript](https://img.shields.io/badge/typescript-5.x-blue) ![Vite](https://img.shields.io/badge/vite-5.x-brightgreen)
 
-### 📅 **Smart Calendar**
-- Interactive calendar view with attendance overview
-- Date-specific attendance details
-- Bulk attendance operations for entire days
-- Visual indicators for different attendance statuses
+## Table of Contents
+- Features
+- Tech Stack
+- Quickstart
+- Scripts
+- Project Structure
+- Notes
+- Contributing
+- License
 
-### ⏰ **Timetable Integration**
-- Customizable daily timetable
-- Subject-wise time slot management
-- Smart attendance tracking based on timetable
+## Features
+- Track and mark attendance (Present / Absent / Holiday / Cancelled)
+- Daily, calendar and timetable views
+- Subject-wise analytics and monthly trends
+- Attendance predictor (days required to reach target %) 
+- Export / Import data and local persistence
+- Light/Dark themes and PWA support
 
-### 📈 **Analytics & Insights**
-- Overall attendance percentage
-- Subject-wise performance tracking
-- Monthly statistics and trends
-- Color-coded performance indicators
+## Tech Stack
+- Frontend: React 18 + TypeScript
+- Styling: Tailwind CSS
+- State: Zustand (with persistence)
+- Routing: React Router
+- UI primitives: Radix UI + shadcn components
+- Charts: Recharts
+- Build: Vite
+- Optional: Firebase (for future sync)
 
-### 🔮 **Attendance Predictor**
-- AI-powered attendance prediction
-- Calculate days needed to reach target percentage (75-76%)
-- Smart recommendations for attendance improvement
+## Quickstart
+Prerequisites: Node.js (v16+) and npm or yarn.
 
-### 🎨 **Modern UI/UX**
-- Dark/Light theme support
-- Responsive mobile-first design
-- Beautiful gradient backgrounds
-- Intuitive navigation
+1. Clone the repo
 
-### 💾 **Data Management**
-- Local storage persistence
-- Export/Import functionality for data backup
-- Settings management
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Node.js (v16 or higher)
-- npm or yarn
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
    git clone <YOUR_GIT_URL>
-   cd <YOUR_PROJECT_NAME>
-   ```
+   cd bunkmaar
 
-2. **Install dependencies**
-   ```bash
+2. Install
+
    npm install
-   ```
 
-3. **Start development server**
-   ```bash
+3. Run development server
+
    npm run dev
-   ```
 
-4. **Open in browser**
-   Navigate to `http://localhost:5173`
+4. Open `http://localhost:5173`
 
-## 📱 Usage Guide
+## Running the ephemeral WebSocket relay (optional)
+To sync ephemeral messages across devices you can run the simple relay included at `server/ws-server.js`.
 
-### Getting Started
-1. **Add Subjects**: Go to the Subjects page and add your academic subjects
-2. **Set Timetable**: Configure your daily class schedule in the Timetable section
-3. **Track Attendance**: Use the Today page for daily attendance marking
-4. **Monitor Progress**: Check your statistics and predictions regularly
+Install dependencies and start the WS server in a separate terminal:
 
-### Key Pages
-- **📍 Today**: Quick attendance marking and daily overview
-- **⏰ Timetable**: Manage your class schedule
-- **📅 Calendar**: View attendance history and bulk operations
-- **📚 Subjects**: Add/remove subjects and view performance
-- **⚙️ Settings**: Data backup, import/export, and app settings
+```bash
+npm install
+npm run ws-server
+```
 
-### Attendance Predictor
-The intelligent predictor helps you:
-- See how many days you need to attend to reach 75-76% attendance
-- Calculate safe absent days while maintaining target percentage
-- Get monthly insights and recommendations
+By default the client connects to `ws://localhost:8081`. If you deploy the WS server elsewhere, set `window.WS_URL` before booting the app or replace the default in `src/lib/ephemeralSocket.ts`.
 
-## 🛠 Tech Stack
+## Useful Scripts
+Use the scripts from [package.json](package.json#L1):
 
-- **Frontend**: React 18 with TypeScript
-- **Styling**: Tailwind CSS with custom design system
-- **State Management**: Zustand with persistence
-- **Routing**: React Router DOM
-- **UI Components**: Radix UI with shadcn/ui
-- **Charts**: Recharts for analytics
-- **Build Tool**: Vite
-- **Icons**: Lucide React
+- `npm run dev` — start Vite dev server
+- `npm run build` — build for production
+- `npm run build:dev` — build with development mode
+- `npm run preview` — preview production build locally
+- `npm run lint` — run ESLint
 
-## 📊 Performance Features
+## Project Structure (key files)
+- `src/` — application source code
+  - `src/main.tsx` — app entry
+  - `src/App.tsx` — main app layout
+  - `src/components/` — reusable components & UI primitives
+  - `src/pages/` — route pages (Today, Calendar, Timetable, Subjects, Settings)
+- `public/` — static assets and PWA manifest
+- `vite.config.ts` — Vite configuration
+- `package.json` — scripts & dependencies ([package.json](package.json#L1))
 
-- **Responsive Design**: Optimized for all screen sizes
-- **Local Storage**: All data persists locally for privacy
-- **Fast Loading**: Vite-powered development and build
-- **PWA Ready**: Can be installed as a mobile app
+Refer to the source for more details in each component.
 
-## 🎨 Design System
+## Notes
+- The app is primarily client-side and stores data locally by default. There are Firebase utilities under `src/lib/` for optional sync.
+- PWA support is included via `vite-plugin-pwa` — you can test installability by running a production build and serving the `dist/` output.
 
-The app uses a comprehensive design system with:
-- **Color Palette**: HSL-based semantic tokens
-- **Typography**: Responsive font scaling
-- **Components**: Reusable UI components
-- **Themes**: Light and dark mode support
-- **Animations**: Smooth transitions and micro-interactions
+## Contributing
+Friendly contributions welcome:
 
-## 🔧 Configuration
+1. Fork the repo
+2. Create a branch: `git checkout -b feature/my-feature`
+3. Commit and push
+4. Open a PR with a clear description
 
-### Customization
-- Modify `tailwind.config.ts` for design tokens
-- Update `src/index.css` for global styles
-- Configure themes in the ThemeToggle component
+Please run `npm run lint` before opening PRs.
 
-### Environment
-No environment variables required - runs entirely client-side for privacy.
+## Next Steps / Roadmap
+- Add cloud-sync and user accounts (optional Firebase integration)
+- Add exportable PDF/CSV reports
+- Add CI (linting, type checks, preview deploy)
 
-## 📈 Analytics
-
-Track your academic performance with:
-- Overall attendance percentage
-- Subject-wise statistics
-- Monthly trends
-- Performance predictions
-- Color-coded progress indicators
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Support
-
-If you encounter any issues or have questions:
-1. Check the app's Settings page for troubleshooting
-2. Use the data export feature to backup your information
-3. Create an issue in the repository
-
-## 🎯 Roadmap
-
-- [ ] Cloud sync and backup
-- [ ] Multi-semester support
-- [ ] Advanced analytics dashboard
-- [ ] Notification system
-- [ ] Class notes integration
-- [ ] Performance reports export
+## License
+MIT — see [LICENSE](LICENSE) for details.
 
 ---
 
-**Built with ❤️ for students by students**
+If you'd like, I can also:
+- add a short CONTRIBUTING.md, or
+- create a simple GitHub Actions workflow for lint/build checks.
 
-*Keep track, stay on track!* 📚✨
+*Built with ❤️ — let me know what to improve next.*
