@@ -1,10 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import { Calendar, Settings, Home, MessageSquare } from 'lucide-react';
+import { Calendar, Settings, Home } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navItems = [
   { path: '/', icon: Home, label: 'Today' },
-  { path: '/messages', icon: MessageSquare, label: 'Messages' },
   { path: '/calendar', icon: Calendar, label: 'Calendar' },
   { path: '/settings', icon: Settings, label: 'Settings' },
 ];

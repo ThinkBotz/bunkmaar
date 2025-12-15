@@ -17,9 +17,7 @@ const Timetable = lazy(() => import("./pages/Timetable"));
 const Calendar = lazy(() => import("./pages/Calendar"));
 const Subjects = lazy(() => import("./pages/Subjects"));
 const Settings = lazy(() => import("./pages/Settings"));
-const Messages = lazy(() => import("./pages/Messages"));
-const MessagesGlobal = lazy(() => import("./pages/MessagesGlobal"));
-const MessagesPersonal = lazy(() => import("./pages/MessagesPersonal"));
+// Messages feature removed
 const Diagnostics = lazy(() => import("./pages/Diagnostics"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -75,27 +73,7 @@ function AppContent() {
                   </Suspense>
                 </RequireAuth>
               } />
-              <Route path="messages" element={
-                <RequireAuth>
-                  <Suspense fallback={<PageLoader />}>
-                    <Messages />
-                  </Suspense>
-                </RequireAuth>
-              } />
-              <Route path="messages/global" element={
-                <RequireAuth>
-                  <Suspense fallback={<PageLoader />}>
-                    <MessagesGlobal />
-                  </Suspense>
-                </RequireAuth>
-              } />
-              <Route path="messages/personal" element={
-                <RequireAuth>
-                  <Suspense fallback={<PageLoader />}>
-                    <MessagesPersonal />
-                  </Suspense>
-                </RequireAuth>
-              } />
+              {/* Messages routes removed */}
               <Route path="settings" element={
                 <RequireAuth>
                   <Suspense fallback={<PageLoader />}>

@@ -64,17 +64,11 @@ Prerequisites: Node.js (v16+) and npm or yarn.
 
 4. Open `http://localhost:5173`
 
-## Running the ephemeral WebSocket relay (optional)
-To sync ephemeral messages across devices you can run the simple relay included at `server/ws-server.js`.
-
-Install dependencies and start the WS server in a separate terminal:
-
-```bash
-npm install
-npm run ws-server
-```
-
-By default the client connects to `ws://localhost:8081`. If you deploy the WS server elsewhere, set `window.WS_URL` before booting the app or replace the default in `src/lib/ephemeralSocket.ts`.
+## Changes
+- Private/global messaging and the optional WebSocket relay have been removed.
+   - The `Messages` routes and pages are no longer part of the app.
+   - The WebSocket relay and related client utilities were deleted.
+   - Scripts referencing the relay were removed from `package.json`.
 
 ## Useful Scripts
 Use the scripts from [package.json](package.json#L1):
