@@ -2,6 +2,8 @@
 
 # Verification script for Android APK setup
 # This script checks if all necessary files and configurations are in place
+# Note: We don't use 'set -e' because we want to continue checking all items
+# even if some checks fail, to provide a complete report
 
 echo "🔍 Verifying Android APK Setup for BunkMaar..."
 echo ""
