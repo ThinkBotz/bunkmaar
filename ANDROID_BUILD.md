@@ -2,6 +2,21 @@
 
 This guide explains how to build the Android APK application for BunkMaar.
 
+## What's Included
+
+The Android APK setup includes:
+
+- ✅ **Capacitor Integration** - Bridges web app to native Android
+- ✅ **Complete Android Project** - Full Android Studio project in `/android` directory
+- ✅ **NPM Build Scripts** - Convenient commands for building APKs
+- ✅ **App Configuration** - Properly configured with:
+  - App ID: `com.bunkmaar.app`
+  - App Name: `BunkMaar`
+  - Package: `com.bunkmaar.app`
+- ✅ **Gradle Build System** - Standard Android build tools
+- ✅ **PWA Assets** - All web assets automatically synced to Android
+- ✅ **Default Icons & Splash Screens** - Ready-to-customize resources
+
 ## Prerequisites
 
 Before building the Android app, ensure you have:
