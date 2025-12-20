@@ -64,6 +64,33 @@ Prerequisites: Node.js (v16+) and npm or yarn.
 
 4. Open `http://localhost:5173`
 
+## Building for Android
+
+BunkMaar can be built as a native Android app using Capacitor:
+
+1. Prerequisites:
+   - Java Development Kit (JDK) 17 or higher
+   - Android Studio with Android SDK
+   - Gradle (included with Android Studio)
+
+2. Build the Android APK:
+   ```
+   npm run android:build
+   ```
+
+   This command will:
+   - Build the web app
+   - Set up the Android platform (if needed)
+   - Sync web assets to Android
+   - Build the APK using Gradle
+
+3. The APK will be located at:
+   ```
+   android/app/build/outputs/apk/release/app-release.apk
+   ```
+
+Note: The first build may take several minutes as Gradle downloads dependencies.
+
 ## Changes
 - Private/global messaging and the optional WebSocket relay have been removed.
    - The `Messages` routes and pages are no longer part of the app.
@@ -78,6 +105,7 @@ Use the scripts from [package.json](package.json#L1):
 - `npm run build:dev` — build with development mode
 - `npm run preview` — preview production build locally
 - `npm run lint` — run ESLint
+- `npm run android:build` — build Android APK (requires Android SDK)
 
 ## Project Structure (key files)
 - `src/` — application source code
