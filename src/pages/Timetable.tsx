@@ -74,6 +74,7 @@ export default function Timetable() {
         </Button>
       </div>
 
+      {/* Main Timetable Display */}
       {subjects.length === 0 ? (
         <Card className="bg-gradient-card shadow-card border-0 p-12 text-center">
           <BookOpen className="h-16 w-16 text-muted-foreground mx-auto mb-4" />

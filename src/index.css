@@ -272,3 +272,195 @@ button, [role="button"], .no-select {
     touch-action: pan-x pan-y;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   Mobile-First Responsive Utilities
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────── 
+   Enhanced Touch Targets & Tap Areas
+   ─────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Ensure all interactive elements have minimum tap target of 44x44px */
+  button, [role="button"], input[type="button"], input[type="submit"], 
+  a[href], select, input[type="text"], textarea, [role="link"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Increase touch-friendly spacing on mobile */
+  .gap-2 { --tw-gap: 0.75rem; }
+  .gap-3 { --tw-gap: 1rem; }
+  .gap-4 { --tw-gap: 1.25rem; }
+  
+  /* Prevent zoom on input focus */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────── 
+   Responsive Dialog & Modal Improvements
+   ─────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* Dialogs use full screen height minus safe area on small screens */
+  [role="dialog"] {
+    max-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  }
+  
+  /* Improved button responsiveness in dialogs */
+  [role="dialog"] button {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  [role="dialog"] button:active {
+    transform: scale(0.95);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────── 
+   Flex Container Responsive Wrapping
+   ─────────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Mobile-first flex wrapping for button groups */
+  .flex-wrap-mobile {
+    @apply flex flex-wrap gap-2 xs:gap-2.5 sm:gap-3 w-full;
+  }
+  
+  /* Responsive grid for small screens */
+  .grid-mobile {
+    @apply grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-2 xs:gap-3 sm:gap-4;
+  }
+  
+  /* Responsive padding that scales with viewport */
+  .px-responsive {
+    @apply px-3 xs:px-4 sm:px-5 md:px-6;
+  }
+  
+  .py-responsive {
+    @apply py-3 xs:py-4 sm:py-5 md:py-6;
+  }
+  
+  /* Responsive text sizes optimized for mobile */
+  .text-responsive-sm {
+    @apply text-xs xs:text-sm sm:text-base;
+  }
+  
+  .text-responsive-base {
+    @apply text-sm xs:text-base sm:text-lg;
+  }
+  
+  .text-responsive-lg {
+    @apply text-base xs:text-lg sm:text-xl;
+  }
+  
+  .text-responsive-xl {
+    @apply text-lg xs:text-xl sm:text-2xl;
+  }
+  
+  /* Responsive button sizing */
+  .btn-responsive-sm {
+    @apply h-8 xs:h-9 sm:h-10 px-2 xs:px-3 sm:px-4 text-xs xs:text-sm sm:text-base;
+  }
+  
+  .btn-responsive-md {
+    @apply h-9 xs:h-10 sm:h-11 px-3 xs:px-4 sm:px-5 text-sm xs:text-base sm:text-lg;
+  }
+  
+  /* Responsive spacing scale */
+  .space-responsive {
+    @apply space-y-2 xs:space-y-3 sm:space-y-4;
+  }
+  
+  /* Premium close button styling */
+  .close-btn-premium {
+    @apply inline-flex items-center justify-center w-10 h-10 xs:w-11 xs:h-11 sm:w-12 sm:h-12
+           rounded-full bg-muted/60 hover:bg-muted dark:bg-muted/50 dark:hover:bg-muted/70
+           text-muted-foreground hover:text-foreground transition-all duration-200 ease-out
+           hover:scale-110 active:scale-95 shadow-lg hover:shadow-xl
+           focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2
+           dark:focus:ring-offset-card disabled:pointer-events-none disabled:opacity-50;
+  }
+  
+  .close-btn-premium-icon {
+    @apply h-5 w-5 xs:h-6 xs:w-6 sm:h-6 sm:w-6 group-hover:rotate-90 transition-transform duration-300;
+  }
+  
+  /* Responsive container with safe areas */
+  .container-safe {
+    @apply container mx-auto px-3 xs:px-4 sm:px-5 md:px-6 
+           safe-top safe-bottom safe-left safe-right
+           max-w-7xl;
+  }
+  
+  /* Responsive card elevation */
+  .card-elevated-mobile {
+    @apply shadow-card hover:shadow-hover xs:hover:shadow-elevated 
+           transition-shadow duration-300 ease-smooth;
+  }
+  
+  /* Responsive modal overlay */
+  .modal-overlay-mobile {
+    @apply fixed inset-0 bg-black/70 xs:bg-black/75 sm:bg-black/80 
+           backdrop-blur-md transition-all duration-300;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────── 
+   Breakpoint-specific Mobile Optimizations
+   ─────────────────────────────────────────────────────────────── */
+@supports (padding: env(safe-area-inset-top)) {
+  @media (max-width: 640px) {
+    body {
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+    
+    [role="dialog"] {
+      padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+    }
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────── 
+   Touch & Pointer Optimizations
+   ─────────────────────────────────────────────────────────────── */
+@media (hover: none) and (pointer: coarse) {
+  /* Disable hover states on touch devices, use active instead */
+  button:hover, [role="button"]:hover, a:hover {
+    opacity: 1;
+  }
+  
+  button:active, [role="button"]:active {
+    transform: scale(0.95);
+  }
+  
+  /* Larger touch targets on mobile */
+  button, [role="button"] {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────── 
+   Responsive Typography Scale
+   ─────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  h1 { font-size: 1.5rem; line-height: 2rem; }
+  h2 { font-size: 1.25rem; line-height: 1.75rem; }
+  h3 { font-size: 1.125rem; line-height: 1.75rem; }
+  h4 { font-size: 1rem; line-height: 1.5rem; }
+  
+  p { font-size: 0.875rem; line-height: 1.25rem; }
+  small, .small { font-size: 0.75rem; line-height: 1rem; }
+}
+
+@media (min-width: 480px) and (max-width: 640px) {
+  h1 { font-size: 1.875rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  h4 { font-size: 1.125rem; }
+  
+  p { font-size: 1rem; }
+  small, .small { font-size: 0.875rem; }
+}

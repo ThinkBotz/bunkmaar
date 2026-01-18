@@ -349,8 +349,8 @@ export default function Calendar() {
             <div className="text-[9px] xs:text-[10px] text-muted-foreground">Missed</div>
           </Card>
           <Card className="relative overflow-hidden border-0 bg-card/40 dark:bg-card/30 backdrop-blur-2xl backdrop-saturate-180 shadow-card hover:shadow-elevated transition-all duration-300 ease-smooth text-center p-3 xs:p-4 sm:p-6">
-            <div className="text-sm xs:text-base sm:text-lg font-bold text-neutral">{stats.cancelledClasses}</div>
-            <div className="text-[9px] xs:text-[10px] text-muted-foreground">No Class</div>
+            <div className="text-sm xs:text-base sm:text-lg font-bold text-blue-500">{stats.totalClasses}</div>
+            <div className="text-[9px] xs:text-[10px] text-muted-foreground">Total Classes</div>
           </Card>
       <Card className="relative overflow-hidden border-0 bg-card/40 dark:bg-card/30 backdrop-blur-2xl backdrop-saturate-180 shadow-card hover:shadow-elevated transition-all duration-300 ease-smooth text-center p-3 xs:p-4 sm:p-6">
             <div className="text-sm xs:text-base sm:text-lg font-bold text-primary">{stats.percentage.toFixed(1)}%</div>
@@ -546,27 +546,28 @@ export default function Calendar() {
           if (!open) setSelectedDate(undefined);
         }}
       >
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md w-[95vw] sm:w-full">
           <DialogHeader>
-            <DialogTitle className="text-center">
+            <DialogTitle className="text-center text-lg xs:text-xl sm:text-2xl">
               {selectedDate ? format(selectedDate, 'EEEE, MMMM d, yyyy') : 'Select Date'}
             </DialogTitle>
           </DialogHeader>
-          <div className="flex flex-wrap items-center justify-center gap-2 pb-2">
+          <div className="flex flex-wrap items-center justify-center gap-2 xs:gap-2.5 sm:gap-3 pb-2">
             {selectedDate && isHolidayDate(selectedDate) && (
-              <Badge className="bg-blue-500 text-white">🔵 Holiday</Badge>
+              <Badge className="bg-blue-500 text-white text-xs xs:text-sm">🔵 Holiday</Badge>
             )}
-            <Button size="sm" variant="outline" onClick={() => applyDayAction('present')}>Day: Present</Button>
-            <Button size="sm" variant="outline" onClick={() => applyDayAction('absent')}>Day: Absent</Button>
-            <Button size="sm" variant="outline" onClick={() => applyDayAction('clear')}>Day: Clear</Button>
+            <Button size="sm" variant="outline" onClick={() => applyDayAction('present')} className="text-xs xs:text-sm py-2 xs:py-2.5 h-9 xs:h-10">Day: Present</Button>
+            <Button size="sm" variant="outline" onClick={() => applyDayAction('absent')} className="text-xs xs:text-sm py-2 xs:py-2.5 h-9 xs:h-10">Day: Absent</Button>
+            <Button size="sm" variant="outline" onClick={() => applyDayAction('clear')} className="text-xs xs:text-sm py-2 xs:py-2.5 h-9 xs:h-10">Day: Clear</Button>
             {selectedDate && isSunday(selectedDate) ? (
-              <Button size="sm" variant="outline" disabled>Sunday: Holiday</Button>
+              <Button size="sm" variant="outline" disabled className="text-xs xs:text-sm py-2 xs:py-2.5 h-9 xs:h-10">Sunday: Holiday</Button>
             ) : (
               <Button 
                 size="sm" 
                 variant="outline" 
                 onClick={() => applyDayAction('holiday')}
                 disabled={selectedDate ? isExamDay(selectedDate) : false}
+                className="text-xs xs:text-sm py-2 xs:py-2.5 h-9 xs:h-10"
               >
                 {(() => {
                   const d = selectedDate ? format(selectedDate, 'yyyy-MM-dd') : format(new Date(), 'yyyy-MM-dd');
@@ -579,69 +580,70 @@ export default function Calendar() {
           </div>
           
           {selectedDate && (
-            <div className="space-y-4">
+            <div className="space-y-3 xs:space-y-4">
               {getSelectedDaySchedule().length === 0 ? (
-                <div className="text-center py-8">
-                  <Clock className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-muted-foreground">No classes scheduled for this day</p>
+                <div className="text-center py-6 xs:py-8">
+                  <Clock className="h-10 w-10 xs:h-12 xs:w-12 text-muted-foreground mx-auto mb-2 xs:mb-4" />
+                  <p className="text-sm xs:text-base text-muted-foreground">No classes scheduled for this day</p>
                 </div>
               ) : (
-                <div className="space-y-3">
+                <div className="space-y-2 xs:space-y-3">
                   {getSelectedDaySchedule().map((timeSlot) => {
                     const attendance = getAttendanceForDate(timeSlot.id);
                     const subject = subjects.find(s => s.id === timeSlot.subjectId);
                     
                     return (
-                      <Card key={timeSlot.id} className="p-3 border border-[hsl(var(--card-border))] dark:border-[hsl(var(--card-border))] bg-card/50 backdrop-blur-sm">
-                        <div className="flex items-center justify-between mb-2 gap-3">
-                          <div>
-                            <h4 className="font-semibold text-foreground">
+                      <Card key={timeSlot.id} className="p-2.5 xs:p-3 sm:p-4 border border-[hsl(var(--card-border))] dark:border-[hsl(var(--card-border))] bg-card/50 backdrop-blur-sm">
+                        <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2 xs:gap-3">
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-sm xs:text-base text-foreground">
                               {subject?.name || 'Unknown Subject'}
                             </h4>
+                            <p className="text-xs xs:text-sm text-muted-foreground font-medium">{timeSlot.startTime} - {timeSlot.endTime}</p>
                           </div>
-                          <div className="flex items-center gap-1">
+                          <div className="flex items-center gap-1 xs:gap-1.5 w-full xs:w-auto flex-wrap xs:flex-nowrap">
                             <Button
-                              size="icon"
+                              size="sm"
                               variant="outline"
                               aria-label="Mark present"
                               onClick={() => handleAttendanceUpdate(timeSlot.id, timeSlot.subjectId!, 'present')}
-                              className="border-success hover:bg-success hover:text-success-foreground"
+                              className="border-success hover:bg-success hover:text-success-foreground h-8 xs:h-9 w-8 xs:w-9 p-0"
                               disabled={selectedDate ? (isHolidayDate(selectedDate) || isExamDay(selectedDate)) : false}
                             >
                               <CheckCircle className="h-4 w-4" />
                             </Button>
                             <Button
-                              size="icon"
+                              size="sm"
                               variant="outline"
                               aria-label="Mark absent"
                               onClick={() => handleAttendanceUpdate(timeSlot.id, timeSlot.subjectId!, 'absent')}
-                              className="border-warning hover:bg-warning hover:text-warning-foreground"
+                              className="border-warning hover:bg-warning hover:text-warning-foreground h-8 xs:h-9 w-8 xs:w-9 p-0"
                               disabled={selectedDate ? (isHolidayDate(selectedDate) || isExamDay(selectedDate)) : false}
                             >
                               <XCircle className="h-4 w-4" />
                             </Button>
                             <Button
-                              size="icon"
+                              size="sm"
                               variant="outline"
                               aria-label="Mark off"
                               onClick={() => handleAttendanceUpdate(timeSlot.id, timeSlot.subjectId!, 'cancelled')}
-                              className="border-neutral hover:bg-neutral hover:text-neutral-foreground"
+                              className="border-neutral hover:bg-neutral hover:text-neutral-foreground h-8 xs:h-9 w-8 xs:w-9 p-0"
                               disabled={selectedDate ? (isHolidayDate(selectedDate) || isExamDay(selectedDate)) : false}
                             >
                               <Minus className="h-4 w-4" />
                             </Button>
                             <Button
-                              size="icon"
+                              size="sm"
                               variant="ghost"
                               aria-label="Clear status"
                               onClick={() => handleClearAttendance(timeSlot.id)}
-                              className="px-3"
+                              className="h-8 xs:h-9 w-8 xs:w-9 p-0"
                               disabled={selectedDate ? (isHolidayDate(selectedDate) || isExamDay(selectedDate)) : false}
                             >
                               <XCircle className="h-4 w-4" />
                             </Button>
                             {attendance && (
-                              <Badge className={getStatusColor(attendance.status)}>
+                              <Badge className={getStatusColor(attendance.status) + " text-xs xs:text-sm"}>
                                 {attendance.status.charAt(0).toUpperCase() + attendance.status.slice(1)}
                               </Badge>
                             )}
@@ -705,9 +707,9 @@ export default function Calendar() {
                       <div className="text-xl xs:text-2xl font-bold text-warning">{monthlyStats.absent ?? 0}</div>
                       <div className="text-[10px] xs:text-xs text-muted-foreground">Missed</div>
                     </Card>
-                    <Card className="p-3 text-center bg-muted/10 border-muted/20">
-                      <div className="text-xl xs:text-2xl font-bold text-neutral">{stats.cancelledClasses ?? 0}</div>
-                      <div className="text-[10px] xs:text-xs text-muted-foreground">No Class</div>
+                    <Card className="p-3 text-center bg-blue-500/10 border-blue-500/20">
+                      <div className="text-xl xs:text-2xl font-bold text-blue-500">{stats.totalClasses ?? 0}</div>
+                      <div className="text-[10px] xs:text-xs text-muted-foreground">Total Classes</div>
                     </Card>
                   </div>
                   
