@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
+import { ApkDownloadPrompt } from "./components/ApkDownloadPrompt";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { RequireAuth } from "./hooks/useAuth";
@@ -105,6 +106,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <ApkDownloadPrompt />
         <AppContent />
       </TooltipProvider>
     </ThemeProvider>
